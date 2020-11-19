@@ -171,7 +171,7 @@ extension MenuViewController {
 
     /// Handle nvidia shortcut
     @objc func onGeforceNowButtonPressed(_ sender: Any) {
-        webController?.navigateTo(address: Navigator.Config.Url.geforceNow.absoluteString)
+        webController?.navigateTo(address: Navigator.Config.Url.geforceNowBeta.absoluteString)
         hideMenu()
     }
 

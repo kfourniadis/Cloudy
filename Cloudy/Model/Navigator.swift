@@ -24,6 +24,7 @@ class Navigator {
             static let googleStadia   = URL(string: "https://stadia.google.com")!
             static let googleAccounts = URL(string: "https://accounts.google.com")!
             static let geforceNow     = URL(string: "https://play.geforcenow.com")!
+            static let geforceNowBeta = URL(string: "https://beta.play.geforcenow.com")!
             static let boosteroid     = URL(string: "https://cloud.boosteroid.com")!
             static let nvidiaRoot     = URL(string: "https://www.nvidia.com")!
             static let patreon        = URL(string: "https://www.patreon.com/cloudyApp")!
@@ -33,6 +34,7 @@ class Navigator {
         struct UserAgent {
             static let chromeDesktop = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36"
             static let iPhone        = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15"
+            static let safariIOS     = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.1 Safari/605.1.15"
         }
     }
 
@@ -82,8 +84,9 @@ class Navigator {
         }
         // regular geforce now
         if navigationUrl.starts(with: Config.Url.geforceNow.absoluteString) ||
+           navigationUrl.starts(with: Config.Url.geforceNowBeta.absoluteString) ||
            navigationUrl.starts(with: Config.Url.nvidiaRoot.absoluteString) {
-            return Navigation(userAgent: Config.UserAgent.chromeDesktop, forwardToUrl: nil, bridgeType: .geforceNow)
+            return Navigation(userAgent: Config.UserAgent.chromeDesktop, forwardToUrl: nil, bridgeType: .regular)
         }
         // boosteroid
         if navigationUrl.starts(with: Config.Url.boosteroid.absoluteString) {
@@ -108,4 +111,14 @@ class Navigator {
         return true
     }
 
+    /// Determine if script should be injected
+    func shouldInjectScript(for url: String) -> Bool {
+        // regular geforce now
+        if url.starts(with: Config.Url.geforceNow.absoluteString) ||
+           url.starts(with: Config.Url.geforceNowBeta.absoluteString) ||
+           url.starts(with: Config.Url.nvidiaRoot.absoluteString) {
+            return false
+        }
+        return true
+    }
 }

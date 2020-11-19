@@ -183,18 +183,20 @@ extension RootViewController: WKNavigationDelegate, WKUIDelegate {
 
     /// When a page finished loading, inject the controller override script
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        // early exit
+        guard let url = webView.url?.absoluteString else {
+            return
+        }
         // inject the script
-        webView.injectControllerScript()
+        if navigator.shouldInjectScript(for: url) {
+            webView.injectControllerScript()
+        }
         // update address
         menu?.updateAddressBar(with: AddressBarInfo(url: webView.url?.absoluteString,
                                                     canGoBack: webView.canGoBack,
                                                     canGoForward: webView.canGoForward))
         // save last visited url
         UserDefaults.standard.lastVisitedUrl = webView.url
-        // set user agent to iphone
-        // DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-        //     webView.customUserAgent = Navigator.Config.UserAgent.iPhone
-        // }
     }
 
     /// Handle popups
