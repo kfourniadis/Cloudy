@@ -12,6 +12,7 @@ import Foundation
         static let useManualUserAgent    = "useManualUserAgent"
         static let allowInlineMedia      = "allowInlineMedia"
         static let onScreenControlsLevel = "onScreenControlsLevel"
+        static let touchFeedbackType     = "touchFeedbackType"
     }
 
     /// Read / write the last visited url
@@ -70,6 +71,19 @@ import Foundation
         }
         set {
             UserDefaults.standard.set(newValue.rawValue, forKey: Config.onScreenControlsLevel)
+        }
+    }
+
+    /// Read / write flag for on screen controller feedback type
+    @objc var touchFeedbackType:     TouchFeedbackType {
+        get {
+            if UserDefaults.standard.object(forKey: Config.touchFeedbackType) == nil {
+                return .off
+            }
+            return TouchFeedbackType(rawValue: UserDefaults.standard.integer(forKey: Config.touchFeedbackType))!
+        }
+        set {
+            UserDefaults.standard.set(newValue.rawValue, forKey: Config.touchFeedbackType)
         }
     }
 

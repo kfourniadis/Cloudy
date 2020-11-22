@@ -84,9 +84,12 @@ class Navigator {
         }
         // regular geforce now
         if navigationUrl.starts(with: Config.Url.geforceNow.absoluteString) ||
-           navigationUrl.starts(with: Config.Url.geforceNowBeta.absoluteString) ||
            navigationUrl.starts(with: Config.Url.nvidiaRoot.absoluteString) {
             return Navigation(userAgent: Config.UserAgent.chromeDesktop, forwardToUrl: nil, bridgeType: .regular)
+        }
+        // geforce now beta
+        if navigationUrl.starts(with: Config.Url.geforceNowBeta.absoluteString) {
+            return Navigation(userAgent: Config.UserAgent.safariIOS, forwardToUrl: nil, bridgeType: .regular)
         }
         // boosteroid
         if navigationUrl.starts(with: Config.Url.boosteroid.absoluteString) {
@@ -112,13 +115,16 @@ class Navigator {
     }
 
     /// Determine if script should be injected
-    func shouldInjectScript(for url: String) -> Bool {
+    func scriptsToInject(for url: String) -> [String] {
         // regular geforce now
         if url.starts(with: Config.Url.geforceNow.absoluteString) ||
-           url.starts(with: Config.Url.geforceNowBeta.absoluteString) ||
            url.starts(with: Config.Url.nvidiaRoot.absoluteString) {
-            return false
+            return []
         }
-        return true
+        // regular geforce now
+        if url.starts(with: Config.Url.geforceNowBeta.absoluteString) {
+            return [Scripts.standaloneOverride]
+        }
+        return [Scripts.controllerOverride]
     }
 }

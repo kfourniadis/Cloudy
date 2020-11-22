@@ -3,33 +3,39 @@
 import UIKit
 import WebKit
 
+/// Extend web kit view to not have any insets, thus full fullscreen
 class FullScreenWKWebView: WKWebView {
     override var safeAreaInsets: UIEdgeInsets {
         .zero
     }
 }
 
-protocol OnScreenControllerUpdater {
+/// Listen to changed settings in menu
+protocol SettingsChangedListener {
     func updateOnScreenController(with value: OnScreenControlsLevel)
+    func updateTouchFeedbackType(with value: TouchFeedbackType)
 }
 
-class RootViewController: UIViewController, OnScreenControllerUpdater {
+/// The main view controller
+/// TODO way too big, refactor asap
+class RootViewController: UIViewController, SettingsChangedListener {
 
     /// Containers
     @IBOutlet var containerWebView:            UIView!
     @IBOutlet var containerOnScreenController: UIView!
 
     /// The hacked webView
-    private var webView:   FullScreenWKWebView!
-    private let navigator: Navigator       = Navigator()
+    private var webView:    FullScreenWKWebView!
+    private let navigator:  Navigator       = Navigator()
 
     /// The menu controller
-    private var menu:      MenuController? = nil
+    private var menu:       MenuController? = nil
 
     /// The bridge between controller and web view
-    private let webViewControllerBridge    = WebViewControllerBridge()
+    private let webViewControllerBridge     = WebViewControllerBridge()
 
-    private var  streamView:                     StreamView?
+    /// The stream view that holds the on screen controls
+    private var streamView: StreamView?
 
     /// By default hide the status bar
     override var prefersStatusBarHidden:         Bool {
@@ -40,6 +46,11 @@ class RootViewController: UIViewController, OnScreenControllerUpdater {
     override var prefersHomeIndicatorAutoHidden: Bool {
         true
     }
+
+    /// Touch feedback generator
+    private lazy var touchFeedbackGenerator: TouchFeedbackGenerator = {
+        AVFoundationVibratingFeedbackGenerator()
+    }()
 
     /// The configuration used for the wk webView
     private lazy var webViewConfig: WKWebViewConfiguration = {
@@ -79,7 +90,7 @@ class RootViewController: UIViewController, OnScreenControllerUpdater {
         menuViewController.view.alpha = 0
         menuViewController.webController = webView
         menuViewController.overlayController = self
-        menuViewController.onScreenControllerUpdater = self
+        menuViewController.settingsChangedListener = self
         menuViewController.view.frame = view.bounds
         menuViewController.willMove(toParent: self)
         addChild(menuViewController)
@@ -98,7 +109,7 @@ class RootViewController: UIViewController, OnScreenControllerUpdater {
                                                   controllerDataReceiver: webViewControllerBridge)
         // stream view
         let streamView        = StreamView(frame: containerOnScreenController.bounds)
-        streamView.setupStreamView(controllerSupport, interactionDelegate: self, config: streamConfig)
+        streamView.setupStreamView(controllerSupport, interactionDelegate: self, config: streamConfig, hapticFeedback: touchFeedbackGenerator)
         streamView.showOnScreenControls()
         containerOnScreenController.addSubview(streamView)
         streamView.fillParent()
@@ -111,6 +122,11 @@ class RootViewController: UIViewController, OnScreenControllerUpdater {
         containerOnScreenController.alpha = value == .off ? 0 : 1
         webViewControllerBridge.controlsSource = value == .off ? .external : .onScreen
         streamView?.updateOnScreenControls()
+    }
+
+    /// Update touch feedback change
+    func updateTouchFeedbackType(with value: TouchFeedbackType) {
+        touchFeedbackGenerator.setFeedbackType(value)
     }
 
     /// Tapped on the menu item
@@ -188,9 +204,7 @@ extension RootViewController: WKNavigationDelegate, WKUIDelegate {
             return
         }
         // inject the script
-        if navigator.shouldInjectScript(for: url) {
-            webView.injectControllerScript()
-        }
+        webView.inject(scripts: navigator.scriptsToInject(for: url))
         // update address
         menu?.updateAddressBar(with: AddressBarInfo(url: webView.url?.absoluteString,
                                                     canGoBack: webView.canGoBack,
@@ -204,6 +218,7 @@ extension RootViewController: WKNavigationDelegate, WKUIDelegate {
         if navigationAction.targetFrame == nil {
             if navigator.shouldOpenPopup(for: navigationAction.request.url?.absoluteString) {
                 let modalWebView = createModalWebView(for: navigationAction.request, configuration: configuration)
+                modalWebView?.customUserAgent = webView.customUserAgent
                 return modalWebView
             } else {
                 webView.load(navigationAction.request)
@@ -216,7 +231,7 @@ extension RootViewController: WKNavigationDelegate, WKUIDelegate {
     /// After successfully logging in, forward user to stadia
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         let navigation = navigator.getNavigation(for: navigationAction.request.url?.absoluteString)
-        print("navigation -> \(navigationAction.request.url?.absoluteString ?? "nil") -> \(navigation)")
+        Log.i("navigation -> \(navigationAction.request.url?.absoluteString ?? "nil") -> \(navigation)")
         webViewControllerBridge.exportType = navigation.bridgeType
         webView.customUserAgent = navigation.userAgent
         if let forwardUrl = navigation.forwardToUrl {

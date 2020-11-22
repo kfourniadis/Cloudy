@@ -27,23 +27,25 @@ class MenuViewController: UIViewController {
 
     /// View references
     @IBOutlet var shadowViews: [UIView]!
-    @IBOutlet weak var userAgentTextField:        UITextField!
-    @IBOutlet weak var manualUserAgent:           UISwitch!
-    @IBOutlet weak var addressBar:                UITextField!
-    @IBOutlet weak var backButton:                UIButton!
-    @IBOutlet weak var forwardButton:             UIButton!
-    @IBOutlet weak var buttonGeforceNow:          UIImageView!
-    @IBOutlet weak var buttonStadia:              UIImageView!
-    @IBOutlet weak var buttonBoosteroid:          UIImageView!
-    @IBOutlet weak var buttonPatreon:             UIImageView!
-    @IBOutlet weak var buttonPayPal:              UIImageView!
-    @IBOutlet weak var allowInlineFeedback:       UISwitch!
-    @IBOutlet weak var onScreenControllerControl: UISegmentedControl!
+    @IBOutlet weak var userAgentTextField:         UITextField!
+    @IBOutlet weak var manualUserAgent:            UISwitch!
+    @IBOutlet weak var addressBar:                 UITextField!
+    @IBOutlet weak var backButton:                 UIButton!
+    @IBOutlet weak var forwardButton:              UIButton!
+    @IBOutlet weak var buttonGeforceNow:           UIImageView!
+    @IBOutlet weak var buttonGeforceNowBeta:       UIImageView!
+    @IBOutlet weak var buttonStadia:               UIImageView!
+    @IBOutlet weak var buttonBoosteroid:           UIImageView!
+    @IBOutlet weak var buttonPatreon:              UIImageView!
+    @IBOutlet weak var buttonPayPal:               UIImageView!
+    @IBOutlet weak var allowInlineFeedback:        UISwitch!
+    @IBOutlet weak var onScreenControllerSelector: UISegmentedControl!
+    @IBOutlet weak var touchFeedbackSelector:      UISegmentedControl!
 
     /// Some injections
-    var webController:             WebController?
-    var overlayController:         OverlayController?
-    var onScreenControllerUpdater: OnScreenControllerUpdater?
+    var webController:           WebController?
+    var overlayController:       OverlayController?
+    var settingsChangedListener: SettingsChangedListener?
 
     /// By default hide the status bar
     override var prefersStatusBarHidden: Bool {
@@ -62,6 +64,9 @@ class MenuViewController: UIViewController {
         // tap for geforce now button
         let tapGeforceNow = UITapGestureRecognizer(target: self, action: #selector(onGeforceNowButtonPressed))
         buttonGeforceNow.addGestureRecognizer(tapGeforceNow)
+        // tap for geforce now beta button
+        let tapGeforceNowBeta = UITapGestureRecognizer(target: self, action: #selector(onGeforceNowBetaButtonPressed))
+        buttonGeforceNowBeta.addGestureRecognizer(tapGeforceNowBeta)
         // tap for boosteroid button
         let tapBoosteroid = UITapGestureRecognizer(target: self, action: #selector(onBoosteroidButtonPressed))
         buttonBoosteroid.addGestureRecognizer(tapBoosteroid)
@@ -75,7 +80,8 @@ class MenuViewController: UIViewController {
         userAgentTextField.text = UserDefaults.standard.manualUserAgent
         manualUserAgent.isOn = UserDefaults.standard.useManualUserAgent
         allowInlineFeedback.isOn = UserDefaults.standard.allowInlineMedia
-        onScreenControllerControl.selectedSegmentIndex = UserDefaults.standard.onScreenControlsLevel.rawValue
+        onScreenControllerSelector.selectedSegmentIndex = UserDefaults.standard.onScreenControlsLevel.rawValue
+        touchFeedbackSelector.selectedSegmentIndex = UserDefaults.standard.touchFeedbackType.rawValue
         // apply shadows
         shadowViews.forEach { $0.addShadow() }
     }
@@ -169,8 +175,14 @@ extension MenuViewController {
         hideMenu()
     }
 
-    /// Handle nvidia shortcut
+    /// Handle geforce now shortcut
     @objc func onGeforceNowButtonPressed(_ sender: Any) {
+        webController?.navigateTo(address: Navigator.Config.Url.geforceNow.absoluteString)
+        hideMenu()
+    }
+
+    /// Handle geforce now beta shortcut
+    @objc func onGeforceNowBetaButtonPressed(_ sender: Any) {
         webController?.navigateTo(address: Navigator.Config.Url.geforceNowBeta.absoluteString)
         hideMenu()
     }
@@ -195,11 +207,21 @@ extension MenuViewController {
 
     /// On screen controls value changed in menu
     @IBAction func onOnScreenControlChanged(_ sender: Any) {
-        guard let newLevel = OnScreenControlsLevel(rawValue: onScreenControllerControl.selectedSegmentIndex) else {
-            Log.e("Something went wrong parsing the selected on screen controls level: \(onScreenControllerControl.selectedSegmentIndex)")
+        guard let newLevel = OnScreenControlsLevel(rawValue: onScreenControllerSelector.selectedSegmentIndex) else {
+            Log.e("Something went wrong parsing the selected on screen controls level: \(onScreenControllerSelector.selectedSegmentIndex)")
             return
         }
         UserDefaults.standard.onScreenControlsLevel = newLevel
-        onScreenControllerUpdater?.updateOnScreenController(with: newLevel)
+        settingsChangedListener?.updateOnScreenController(with: newLevel)
+    }
+
+    /// Touch feedback selector changed
+    @IBAction func onTouchFeedbackChanged(_ sender: Any) {
+        guard let newFeedbackType = TouchFeedbackType(rawValue: touchFeedbackSelector.selectedSegmentIndex) else {
+            Log.e("Something went wrong parsing the selected touch feedback type: \(touchFeedbackSelector.selectedSegmentIndex)")
+            return
+        }
+        UserDefaults.standard.touchFeedbackType = newFeedbackType
+        settingsChangedListener?.updateTouchFeedbackType(with: newFeedbackType)
     }
 }

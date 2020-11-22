@@ -30,7 +30,8 @@
 
     - (void)setupStreamView:(ControllerSupport *)controllerSupport
             interactionDelegate:(id <UserInteractionDelegate>)interactionDelegate
-            config:(StreamConfiguration *)streamConfig;
+            config:(StreamConfiguration *)streamConfig
+            hapticFeedback:(id <TouchFeedbackGenerator>)hapticFeedbackDelegate;
 
     - (void)showOnScreenControls;
 

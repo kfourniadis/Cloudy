@@ -20,44 +20,7 @@ protocol WebController {
 
 extension WKWebView: WebController {
 
-    /// The script to be injected into the webview
-    /// It's overwriting the navigator.getGamepads function
-    /// to make the connection with the native GCController solid
-    private static let script: String = """
-                                        var emulatedGamepad = {
-                                            id: "\(GCExtendedGamepad.id)",
-                                            index: 0,
-                                            connected: true,
-                                            timestamp: 0.0,
-                                            mapping: "standard",
-                                            axes: [0.0, 0.0, 0.0, 0.0],
-                                            buttons: new Array(17).fill().map((m) => {
-                                                 return { pressed: false, touched: false, value: 0 }
-                                            })
-                                        }
 
-                                        navigator.getGamepads = function() {
-                                            window.webkit.messageHandlers.controller.postMessage({}).then((controllerData) => {
-                                                if (controllerData === null || controllerData === undefined) return;
-                                                try {
-                                                    var data = JSON.parse(controllerData);
-                                                    for(let i = 0; i < data.axes.length; i++) {
-                                                        emulatedGamepad.axes[i] = data.axes[i];
-                                                    }
-                                                    for(let i = 0; i < data.buttons.length; i++) {
-                                                        emulatedGamepad.buttons[i].pressed = data.buttons[i].pressed;
-                                                        emulatedGamepad.buttons[i].touched = data.buttons[i].touched;
-                                                        emulatedGamepad.buttons[i].value   = data.buttons[i].value;
-                                                    }
-                                                    emulatedGamepad.timestamp = performance.now();
-                                                    // console.log(emulatedGamepad);
-                                                } catch(e) { 
-                                                    console.error("something went wrong: " + e);  
-                                                }
-                                            });
-                                            return [emulatedGamepad, null, null, null];
-                                        };
-                                        """
 
     /// The message used for the handler
     static let messageHandlerName: String = "controller"
@@ -84,7 +47,7 @@ extension WKWebView: WebController {
             records.forEach { record in
                 WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
                 #if DEBUG
-                    print("WKWebsiteDataStore record deleted:", record)
+                    Log.i("WKWebsiteDataStore record deleted: \(record)")
                 #endif
             }
         }
@@ -94,7 +57,7 @@ extension WKWebView: WebController {
     func navigateTo(address: String) {
         /// build url
         guard let url = URL(string: address.fixedProtocol()) else {
-            print("Error creating Url from '\(address)'")
+            Log.e("Error creating Url from '\(address)'")
             return
         }
         // load
@@ -107,7 +70,9 @@ extension WKWebView: WebController {
     }
 
     /// Inject inject the js controller script
-    func injectControllerScript() {
-        evaluateJavaScript(WKWebView.script, completionHandler: nil)
+    func inject(scripts: [String]) {
+        scripts.forEach { script in
+            evaluateJavaScript(script, completionHandler: nil)
+        }
     }
 }
