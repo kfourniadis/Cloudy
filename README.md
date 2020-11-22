@@ -42,7 +42,7 @@ Feel free to discuss features, bugs and other improvement requests on the public
 
  Patreon             |  Paypal
 :-------------------------:|:-------------------------:
-[![patreon](Media/becomePatreon.png)](https://www.patreon.com/cloudyApp)  |  [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://paypal.me/pools/c/8tKK9M8XUi)
+[![patreon](Media/becomePatreon.png)](https://www.patreon.com/cloudyApp)  |  [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://paypal.me/pools/c/8tPw2veZIm)
 
 # Ways to get the Cloudy App on your iDevice
 
