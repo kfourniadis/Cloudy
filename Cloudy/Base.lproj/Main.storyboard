@@ -268,10 +268,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="1092" height="525.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGP-Ji-Kst">
-                                                        <rect key="frame" x="0.0" y="0.0" width="1092" height="292"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="1092" height="350"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="E19-IG-xpE">
-                                                                <rect key="frame" x="0.0" y="10" width="1092" height="282"/>
+                                                                <rect key="frame" x="0.0" y="10" width="1092" height="340"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="85v-hp-AzR" userLabel="Manual UserAgent">
                                                                         <rect key="frame" x="0.0" y="0.0" width="1092" height="50"/>
@@ -447,8 +447,42 @@
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAd-te-Bru" userLabel="Delete cache">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gYt-Qe-92F" userLabel="Custom Inject">
                                                                         <rect key="frame" x="0.0" y="232" width="1092" height="50"/>
+                                                                        <subviews>
+                                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7D-76-MuH">
+                                                                                <rect key="frame" x="10" y="10" width="136" height="30"/>
+                                                                                <state key="normal" title="Inject Custom Code"/>
+                                                                                <connections>
+                                                                                    <action selector="onInjectCustomCodePressed:" destination="FIN-ZL-Y0N" eventType="touchUpInside" id="vOY-om-k5a"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dgf-EK-sHG" userLabel="Custom JS">
+                                                                                <rect key="frame" x="156" y="8" width="926" height="34"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                                                <connections>
+                                                                                    <action selector="onCustomJsInjectCodeChanged:" destination="FIN-ZL-Y0N" eventType="valueChanged" id="iLK-Mr-Zkt"/>
+                                                                                </connections>
+                                                                            </textField>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="Dgf-EK-sHG" firstAttribute="leading" secondItem="X7D-76-MuH" secondAttribute="trailing" constant="10" id="20m-Zf-hy3"/>
+                                                                            <constraint firstItem="X7D-76-MuH" firstAttribute="top" secondItem="gYt-Qe-92F" secondAttribute="top" constant="10" id="ATN-jt-LjK"/>
+                                                                            <constraint firstItem="X7D-76-MuH" firstAttribute="leading" secondItem="gYt-Qe-92F" secondAttribute="leading" constant="10" id="Cfw-II-gFk"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="Dgf-EK-sHG" secondAttribute="trailing" constant="10" id="MMC-Pp-ehh"/>
+                                                                            <constraint firstItem="Dgf-EK-sHG" firstAttribute="centerY" secondItem="X7D-76-MuH" secondAttribute="centerY" id="N6W-54-Zdu"/>
+                                                                            <constraint firstAttribute="height" constant="50" id="hCb-GO-MJF"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="10"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAd-te-Bru" userLabel="Delete cache">
+                                                                        <rect key="frame" x="0.0" y="290" width="1092" height="50"/>
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7HL-oZ-bIE" userLabel="Delete Cache Button">
                                                                                 <rect key="frame" x="10" y="0.0" width="49" height="25.5"/>
@@ -565,6 +599,7 @@
                         <outlet property="buttonPatreon" destination="9yC-sf-omI" id="Sf3-eG-gLl"/>
                         <outlet property="buttonPayPal" destination="wz2-wP-jxe" id="xL2-1B-WAs"/>
                         <outlet property="buttonStadia" destination="0VM-PV-WdW" id="CxB-kR-0dV"/>
+                        <outlet property="customJsInjection" destination="Dgf-EK-sHG" id="Di4-Iq-hVh"/>
                         <outlet property="forwardButton" destination="HL9-MD-JBo" id="kn6-je-sLp"/>
                         <outlet property="manualUserAgent" destination="LXn-E5-rXe" id="hzl-Bl-Www"/>
                         <outlet property="onScreenControllerSelector" destination="grV-ih-Oun" id="06G-0H-EUm"/>

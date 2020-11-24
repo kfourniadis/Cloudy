@@ -11,22 +11,23 @@ class FullScreenWKWebView: WKWebView {
 }
 
 /// Listen to changed settings in menu
-protocol SettingsChangedListener {
+protocol MenuActionsHandler {
     func updateOnScreenController(with value: OnScreenControlsLevel)
     func updateTouchFeedbackType(with value: TouchFeedbackType)
+    func injectCustom(code: String)
 }
 
 /// The main view controller
 /// TODO way too big, refactor asap
-class RootViewController: UIViewController, SettingsChangedListener {
+class RootViewController: UIViewController, MenuActionsHandler {
 
     /// Containers
     @IBOutlet var containerWebView:            UIView!
     @IBOutlet var containerOnScreenController: UIView!
 
     /// The hacked webView
-    private var webView:    FullScreenWKWebView!
-    private let navigator:  Navigator       = Navigator()
+    private var  webView:                        FullScreenWKWebView!
+    private let  navigator:                      Navigator = Navigator()
 
     /// The menu controller
     private var menu:       MenuController? = nil
@@ -90,7 +91,7 @@ class RootViewController: UIViewController, SettingsChangedListener {
         menuViewController.view.alpha = 0
         menuViewController.webController = webView
         menuViewController.overlayController = self
-        menuViewController.settingsChangedListener = self
+        menuViewController.menuActionsHandler = self
         menuViewController.view.frame = view.bounds
         menuViewController.willMove(toParent: self)
         addChild(menuViewController)
@@ -127,6 +128,11 @@ class RootViewController: UIViewController, SettingsChangedListener {
     /// Update touch feedback change
     func updateTouchFeedbackType(with value: TouchFeedbackType) {
         touchFeedbackGenerator.setFeedbackType(value)
+    }
+
+    /// Handle code injection
+    func injectCustom(code: String) {
+        webView.inject(scripts: [code])
     }
 
     /// Tapped on the menu item

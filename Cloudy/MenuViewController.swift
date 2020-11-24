@@ -41,11 +41,13 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var allowInlineFeedback:        UISwitch!
     @IBOutlet weak var onScreenControllerSelector: UISegmentedControl!
     @IBOutlet weak var touchFeedbackSelector:      UISegmentedControl!
+    @IBOutlet weak var customJsInjection:          UITextField!
+
 
     /// Some injections
-    var webController:           WebController?
-    var overlayController:       OverlayController?
-    var settingsChangedListener: SettingsChangedListener?
+    var webController:      WebController?
+    var overlayController:  OverlayController?
+    var menuActionsHandler: MenuActionsHandler?
 
     /// By default hide the status bar
     override var prefersStatusBarHidden: Bool {
@@ -82,6 +84,7 @@ class MenuViewController: UIViewController {
         allowInlineFeedback.isOn = UserDefaults.standard.allowInlineMedia
         onScreenControllerSelector.selectedSegmentIndex = UserDefaults.standard.onScreenControlsLevel.rawValue
         touchFeedbackSelector.selectedSegmentIndex = UserDefaults.standard.touchFeedbackType.rawValue
+        customJsInjection.text = UserDefaults.standard.customJsCodeToInject
         // apply shadows
         shadowViews.forEach { $0.addShadow() }
     }
@@ -212,7 +215,7 @@ extension MenuViewController {
             return
         }
         UserDefaults.standard.onScreenControlsLevel = newLevel
-        settingsChangedListener?.updateOnScreenController(with: newLevel)
+        menuActionsHandler?.updateOnScreenController(with: newLevel)
     }
 
     /// Touch feedback selector changed
@@ -222,6 +225,20 @@ extension MenuViewController {
             return
         }
         UserDefaults.standard.touchFeedbackType = newFeedbackType
-        settingsChangedListener?.updateTouchFeedbackType(with: newFeedbackType)
+        menuActionsHandler?.updateTouchFeedbackType(with: newFeedbackType)
+    }
+
+    /// Custom js code injection changed
+    @IBAction func onCustomJsInjectCodeChanged(_ sender: Any) {
+        UserDefaults.standard.customJsCodeToInject = customJsInjection.text
+    }
+
+    /// Inject custom code
+    @IBAction func onInjectCustomCodePressed(_ sender: Any) {
+        guard let code = customJsInjection.text,
+              !code.isEmpty else {
+            return
+        }
+        menuActionsHandler?.injectCustom(code: code)
     }
 }

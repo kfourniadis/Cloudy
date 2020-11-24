@@ -13,6 +13,7 @@ import Foundation
         static let allowInlineMedia      = "allowInlineMedia"
         static let onScreenControlsLevel = "onScreenControlsLevel"
         static let touchFeedbackType     = "touchFeedbackType"
+        static let customJsCodeToInject  = "customJsCodeToInject"
     }
 
     /// Read / write the last visited url
@@ -75,7 +76,7 @@ import Foundation
     }
 
     /// Read / write flag for on screen controller feedback type
-    @objc var touchFeedbackType:     TouchFeedbackType {
+    @objc var touchFeedbackType:    TouchFeedbackType {
         get {
             if UserDefaults.standard.object(forKey: Config.touchFeedbackType) == nil {
                 return .off
@@ -84,6 +85,16 @@ import Foundation
         }
         set {
             UserDefaults.standard.set(newValue.rawValue, forKey: Config.touchFeedbackType)
+        }
+    }
+
+    /// Read / write the custom js injection
+    var       customJsCodeToInject: String? {
+        get {
+            UserDefaults.standard.string(forKey: Config.customJsCodeToInject)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Config.customJsCodeToInject)
         }
     }
 
