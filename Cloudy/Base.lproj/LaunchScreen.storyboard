@@ -19,20 +19,14 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_screen" translatesAutoresizingMaskIntoConstraints="NO" id="aOd-Af-Ow6">
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Via-ij-o1w">
-                                <rect key="frame" x="429.5" y="315.5" width="37" height="37"/>
-                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="aOd-Af-Ow6" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="3jG-zU-Glt"/>
                             <constraint firstAttribute="bottom" secondItem="aOd-Af-Ow6" secondAttribute="bottom" id="Aeo-Ub-me3"/>
-                            <constraint firstItem="Via-ij-o1w" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="1.7" id="Mlq-WZ-KI5"/>
                             <constraint firstAttribute="trailing" secondItem="aOd-Af-Ow6" secondAttribute="trailing" id="Tim-zN-w0C"/>
                             <constraint firstItem="aOd-Af-Ow6" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Y32-VZ-CDZ"/>
-                            <constraint firstItem="Via-ij-o1w" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="faI-7A-j6C"/>
                         </constraints>
                     </view>
                 </viewController>
