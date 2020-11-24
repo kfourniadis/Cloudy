@@ -268,10 +268,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="1092" height="525.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGP-Ji-Kst">
-                                                        <rect key="frame" x="0.0" y="0.0" width="1092" height="282"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="1092" height="292"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="E19-IG-xpE">
-                                                                <rect key="frame" x="0.0" y="0.0" width="1092" height="282"/>
+                                                                <rect key="frame" x="0.0" y="10" width="1092" height="282"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="85v-hp-AzR" userLabel="Manual UserAgent">
                                                                         <rect key="frame" x="0.0" y="0.0" width="1092" height="50"/>
@@ -495,7 +495,7 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="E19-IG-xpE" firstAttribute="leading" secondItem="fGP-Ji-Kst" secondAttribute="leading" id="5E6-P4-Cpg"/>
-                                                            <constraint firstItem="E19-IG-xpE" firstAttribute="top" secondItem="fGP-Ji-Kst" secondAttribute="top" id="GEI-SD-wUK"/>
+                                                            <constraint firstItem="E19-IG-xpE" firstAttribute="top" secondItem="fGP-Ji-Kst" secondAttribute="top" constant="10" id="GEI-SD-wUK"/>
                                                             <constraint firstAttribute="trailing" secondItem="E19-IG-xpE" secondAttribute="trailing" id="jsC-Z5-eNb"/>
                                                             <constraint firstAttribute="bottom" secondItem="E19-IG-xpE" secondAttribute="bottom" id="ug4-BQ-1qS"/>
                                                         </constraints>
