@@ -27,25 +27,30 @@ class RootViewController: UIViewController, MenuActionsHandler {
 
     /// The hacked webView
     private var  webView:                        FullScreenWKWebView!
-    private let  navigator:                      Navigator = Navigator()
+    private let  navigator:                                   Navigator = Navigator()
 
     /// The menu controller
-    private var menu:       MenuController? = nil
+    private var  menu:                                        MenuController? = nil
 
     /// The bridge between controller and web view
-    private let webViewControllerBridge     = WebViewControllerBridge()
+    private let  webViewControllerBridge     = WebViewControllerBridge()
 
     /// The stream view that holds the on screen controls
-    private var streamView: StreamView?
+    private var  streamView:                                  StreamView?
 
     /// By default hide the status bar
-    override var prefersStatusBarHidden:         Bool {
+    override var prefersStatusBarHidden:                      Bool {
         true
     }
 
     /// Hide bottom bar on x devices
-    override var prefersHomeIndicatorAutoHidden: Bool {
+    override var prefersHomeIndicatorAutoHidden:              Bool {
         true
+    }
+
+    /// Defer edge swiping animations
+    override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
+        [.all]
     }
 
     /// Touch feedback generator
