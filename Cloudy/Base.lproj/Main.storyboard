@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad10_5" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -209,25 +209,28 @@
                                                 <rect key="frame" x="10" y="10" width="1072" height="188.5"/>
                                                 <subviews>
                                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_stadia" translatesAutoresizingMaskIntoConstraints="NO" id="0VM-PV-WdW">
-                                                        <rect key="frame" x="0.0" y="0.0" width="214.5" height="188.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="178.5" height="188.5"/>
                                                     </imageView>
                                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_geforce_now" translatesAutoresizingMaskIntoConstraints="NO" id="Kdq-FP-3hb">
-                                                        <rect key="frame" x="222.5" y="0.0" width="214.5" height="188.5"/>
+                                                        <rect key="frame" x="186.5" y="0.0" width="179" height="188.5"/>
                                                     </imageView>
                                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_geforce_now_beta" translatesAutoresizingMaskIntoConstraints="NO" id="zau-rP-Nr4" userLabel="Button Geforce Now Beta">
-                                                        <rect key="frame" x="445" y="0.0" width="214" height="188.5"/>
+                                                        <rect key="frame" x="373.5" y="0.0" width="178.5" height="188.5"/>
+                                                    </imageView>
+                                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_luna" translatesAutoresizingMaskIntoConstraints="NO" id="Ao9-3G-MXT" userLabel="Button Luna">
+                                                        <rect key="frame" x="560" y="0.0" width="178.5" height="188.5"/>
                                                     </imageView>
                                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_boosteroid" translatesAutoresizingMaskIntoConstraints="NO" id="Wfg-u9-jgh" userLabel="Button Boosteroid">
-                                                        <rect key="frame" x="667" y="0.0" width="214.5" height="188.5"/>
+                                                        <rect key="frame" x="746.5" y="0.0" width="179" height="188.5"/>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9QP-Bm-aQo">
-                                                        <rect key="frame" x="889.5" y="0.0" width="182.5" height="188.5"/>
+                                                        <rect key="frame" x="933.5" y="0.0" width="138.5" height="188.5"/>
                                                         <subviews>
                                                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_patreon" translatesAutoresizingMaskIntoConstraints="NO" id="9yC-sf-omI" userLabel="Button Patreon">
-                                                                <rect key="frame" x="0.0" y="0.0" width="182.5" height="89.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="138.5" height="89.5"/>
                                                             </imageView>
                                                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_paypal" translatesAutoresizingMaskIntoConstraints="NO" id="wz2-wP-jxe" userLabel="Button PayPal">
-                                                                <rect key="frame" x="0.0" y="99.5" width="182.5" height="89"/>
+                                                                <rect key="frame" x="0.0" y="99.5" width="138.5" height="89"/>
                                                             </imageView>
                                                         </subviews>
                                                     </stackView>
@@ -596,6 +599,7 @@
                         <outlet property="buttonBoosteroid" destination="Wfg-u9-jgh" id="DnK-sM-pzF"/>
                         <outlet property="buttonGeforceNow" destination="Kdq-FP-3hb" id="1GC-Yc-UvH"/>
                         <outlet property="buttonGeforceNowBeta" destination="zau-rP-Nr4" id="RXQ-ns-OVk"/>
+                        <outlet property="buttonLuna" destination="Ao9-3G-MXT" id="E6F-Lp-hKH"/>
                         <outlet property="buttonPatreon" destination="9yC-sf-omI" id="Sf3-eG-gLl"/>
                         <outlet property="buttonPayPal" destination="wz2-wP-jxe" id="xL2-1B-WAs"/>
                         <outlet property="buttonStadia" destination="0VM-PV-WdW" id="CxB-kR-0dV"/>
@@ -614,6 +618,7 @@
                         <outletCollection property="shadowViews" destination="OsD-jZ-eto" collectionClass="NSMutableArray" id="9dJ-qR-EgY"/>
                         <outletCollection property="shadowViews" destination="fbJ-HA-LhZ" collectionClass="NSMutableArray" id="iRk-bH-w78"/>
                         <outletCollection property="shadowViews" destination="zau-rP-Nr4" collectionClass="NSMutableArray" id="NFd-iP-4Gf"/>
+                        <outletCollection property="shadowViews" destination="Ao9-3G-MXT" collectionClass="NSMutableArray" id="nE1-7I-uxA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9R8-x7-9FR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -626,6 +631,7 @@
         <image name="button_boosteroid" width="512" height="512"/>
         <image name="button_geforce_now" width="512" height="512"/>
         <image name="button_geforce_now_beta" width="512" height="512"/>
+        <image name="button_luna" width="512" height="514"/>
         <image name="button_patreon" width="512" height="256"/>
         <image name="button_paypal" width="512" height="256"/>
         <image name="button_stadia" width="512" height="512"/>
