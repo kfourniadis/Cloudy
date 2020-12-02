@@ -35,6 +35,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var buttonGeforceNow:           UIImageView!
     @IBOutlet weak var buttonGeforceNowBeta:       UIImageView!
     @IBOutlet weak var buttonStadia:               UIImageView!
+    @IBOutlet weak var buttonLuna:                 UIImageView!
     @IBOutlet weak var buttonBoosteroid:           UIImageView!
     @IBOutlet weak var buttonGamepadTester:        UIImageView!
     @IBOutlet weak var buttonPatreon:              UIImageView!
@@ -74,6 +75,9 @@ class MenuViewController: UIViewController {
         // tap for boosteroid button
         let tapBoosteroid = UITapGestureRecognizer(target: self, action: #selector(onBoosteroidButtonPressed))
         buttonBoosteroid.addGestureRecognizer(tapBoosteroid)
+        // tap for luna button
+        let tapLuna = UITapGestureRecognizer(target: self, action: #selector(onLunaButtonPressed))
+        buttonLuna.addGestureRecognizer(tapLuna)
         // tap for gamepad tester button
         let tapGamepadTester = UITapGestureRecognizer(target: self, action: #selector(onGamepadTesterButtonPressed))
         buttonGamepadTester.addGestureRecognizer(tapGamepadTester)
@@ -193,6 +197,12 @@ extension MenuViewController {
     /// Handle geforce now beta shortcut
     @objc func onGeforceNowBetaButtonPressed(_ sender: Any) {
         webController?.navigateTo(address: Navigator.Config.Url.geforceNowBeta.absoluteString)
+        hideMenu()
+    }
+
+    /// Handle luna shortcut
+    @objc func onLunaButtonPressed(_ sender: Any) {
+        webController?.navigateTo(address: Navigator.Config.Url.amazonLuna.absoluteString)
         hideMenu()
     }
 

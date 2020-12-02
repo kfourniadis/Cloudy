@@ -27,6 +27,7 @@ class Navigator {
             static let geforceNowBeta = URL(string: "https://beta.play.geforcenow.com")!
             static let boosteroid     = URL(string: "https://cloud.boosteroid.com")!
             static let nvidiaRoot     = URL(string: "https://www.nvidia.com")!
+            static let amazonLuna     = URL(string: "https://amazon.com/luna")!
             static let gamepadTester  = URL(string: "https://gamepad-tester.com")!
             static let patreon        = URL(string: "https://www.patreon.com/cloudyApp")!
             static let paypal         = URL(string: "https://paypal.me/pools/c/8tPw2veZIm")!
@@ -92,6 +93,10 @@ class Navigator {
         if navigationUrl.starts(with: Config.Url.geforceNowBeta.absoluteString) {
             return Navigation(userAgent: Config.UserAgent.safariIOS, forwardToUrl: nil, bridgeType: .regular)
         }
+        // amazon luna
+        if navigationUrl.starts(with: Config.Url.amazonLuna.absoluteString) {
+            return Navigation(userAgent: Config.UserAgent.safariIOS, forwardToUrl: nil, bridgeType: .regular)
+        }
         // boosteroid
         if navigationUrl.starts(with: Config.Url.boosteroid.absoluteString) {
             return Navigation(userAgent: Config.UserAgent.chromeDesktop, forwardToUrl: nil, bridgeType: .regular)
@@ -123,7 +128,8 @@ class Navigator {
             return []
         }
         // regular geforce now
-        if url.starts(with: Config.Url.geforceNowBeta.absoluteString) {
+        if url.starts(with: Config.Url.geforceNowBeta.absoluteString) &&
+           url.starts(with: Config.Url.amazonLuna.absoluteString) {
             return [Scripts.standaloneOverride]
         }
         return [Scripts.controllerOverride()]
