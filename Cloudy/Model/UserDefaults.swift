@@ -11,6 +11,7 @@ import Foundation
         static let manualUserAgent       = "manualUserAgent"
         static let useManualUserAgent    = "useManualUserAgent"
         static let allowInlineMedia      = "allowInlineMedia"
+        static let controllerId          = "controllerId"
         static let onScreenControlsLevel = "onScreenControlsLevel"
         static let touchFeedbackType     = "touchFeedbackType"
         static let customJsCodeToInject  = "customJsCodeToInject"
@@ -62,6 +63,19 @@ import Foundation
         }
     }
 
+    /// Read / write flag for controller ID
+    @nonobjc var controllerId: GCExtendedGamepad.id {
+        get {
+            if UserDefaults.standard.object(forKey: Config.controllerId) == nil {
+                return .xbox
+            }
+            return GCExtendedGamepad.id(rawValue: UserDefaults.standard.integer(forKey: Config.controllerId))!
+        }
+        set {
+            UserDefaults.standard.set(newValue.rawValue, forKey: Config.controllerId)
+        }
+    }
+    
     /// Read / write flag for on screen controller
     @objc var onScreenControlsLevel: OnScreenControlsLevel {
         get {

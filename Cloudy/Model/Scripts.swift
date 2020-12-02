@@ -10,9 +10,9 @@ struct Scripts {
     /// The script to be injected into the webview
     /// It's overwriting the navigator.getGamepads function
     /// to make the connection with the native GCController solid
-    static let controllerOverride: String = """
+    static func controllerOverride() -> String { """
                                             var emulatedGamepad = {
-                                                id: "\(GCExtendedGamepad.id)",
+                                                id: "\(UserDefaults.standard.controllerId.chromeFormat())",
                                                 index: 0,
                                                 connected: true,
                                                 timestamp: 0.0,
@@ -45,5 +45,5 @@ struct Scripts {
                                                 });
                                                 return [emulatedGamepad, null, null, null];
                                             };
-                                            """
+                                            """ }
 }

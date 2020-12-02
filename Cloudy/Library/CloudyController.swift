@@ -47,7 +47,7 @@ private var shouldPulse: Bool = false
 
     /// Some static ones for proper configuration
     private let connected: Bool   = true
-    private let id:        String = GCExtendedGamepad.id
+    private let id:        String = UserDefaults.standard.controllerId.chromeFormat()
     private let index:     Int    = 0
     private let mapping:   String = "standard"
     private let timestamp: Float  = 0

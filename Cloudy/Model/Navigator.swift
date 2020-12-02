@@ -27,6 +27,7 @@ class Navigator {
             static let geforceNowBeta = URL(string: "https://beta.play.geforcenow.com")!
             static let boosteroid     = URL(string: "https://cloud.boosteroid.com")!
             static let nvidiaRoot     = URL(string: "https://www.nvidia.com")!
+            static let gamepadTester  = URL(string: "https://gamepad-tester.com")!
             static let patreon        = URL(string: "https://www.patreon.com/cloudyApp")!
             static let paypal         = URL(string: "https://paypal.me/pools/c/8tPw2veZIm")!
         }
@@ -125,6 +126,6 @@ class Navigator {
         if url.starts(with: Config.Url.geforceNowBeta.absoluteString) {
             return [Scripts.standaloneOverride]
         }
-        return [Scripts.controllerOverride]
+        return [Scripts.controllerOverride()]
     }
 }
