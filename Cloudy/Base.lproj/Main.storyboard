@@ -209,32 +209,32 @@
                                                 <rect key="frame" x="10" y="10" width="1072" height="188.5"/>
                                                 <subviews>
                                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_stadia" translatesAutoresizingMaskIntoConstraints="NO" id="0VM-PV-WdW">
-                                                        <rect key="frame" x="0.0" y="0.0" width="178.5" height="188.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="153" height="188.5"/>
                                                     </imageView>
                                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_geforce_now" translatesAutoresizingMaskIntoConstraints="NO" id="Kdq-FP-3hb">
-                                                        <rect key="frame" x="186.5" y="0.0" width="179" height="188.5"/>
+                                                        <rect key="frame" x="161" y="0.0" width="153.5" height="188.5"/>
                                                     </imageView>
                                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_geforce_now_beta" translatesAutoresizingMaskIntoConstraints="NO" id="zau-rP-Nr4" userLabel="Button Geforce Now Beta">
-                                                        <rect key="frame" x="373.5" y="0.0" width="178.5" height="188.5"/>
+                                                        <rect key="frame" x="322.5" y="0.0" width="153" height="188.5"/>
                                                     </imageView>
                                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_luna" translatesAutoresizingMaskIntoConstraints="NO" id="Ao9-3G-MXT" userLabel="Button Luna">
-                                                        <rect key="frame" x="560" y="0.0" width="178.5" height="188.5"/>
+                                                        <rect key="frame" x="483.5" y="0.0" width="153" height="188.5"/>
                                                     </imageView>
                                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_boosteroid" translatesAutoresizingMaskIntoConstraints="NO" id="Wfg-u9-jgh" userLabel="Button Boosteroid">
-                                                        <rect key="frame" x="746.5" y="0.0" width="179" height="188.5"/>
+                                                        <rect key="frame" x="644.5" y="0.0" width="153" height="188.5"/>
                                                     </imageView>
                                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_gamepad_tester" id="bFl-9U-Su7">
-                                                        <rect key="frame" x="746.5" y="0.0" width="179" height="188.5"/>
+                                                        <rect key="frame" x="805.5" y="0.0" width="153.5" height="188.5"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9QP-Bm-aQo">
-                                                        <rect key="frame" x="933.5" y="0.0" width="138.5" height="188.5"/>
+                                                        <rect key="frame" x="967" y="0.0" width="105" height="188.5"/>
                                                         <subviews>
                                                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_patreon" translatesAutoresizingMaskIntoConstraints="NO" id="9yC-sf-omI" userLabel="Button Patreon">
-                                                                <rect key="frame" x="0.0" y="0.0" width="138.5" height="89.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="105" height="89.5"/>
                                                             </imageView>
                                                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_paypal" translatesAutoresizingMaskIntoConstraints="NO" id="wz2-wP-jxe" userLabel="Button PayPal">
-                                                                <rect key="frame" x="0.0" y="99.5" width="138.5" height="89"/>
+                                                                <rect key="frame" x="0.0" y="99.5" width="105" height="89"/>
                                                             </imageView>
                                                         </subviews>
                                                     </stackView>
@@ -669,6 +669,7 @@
                         <outletCollection property="shadowViews" destination="fbJ-HA-LhZ" collectionClass="NSMutableArray" id="iRk-bH-w78"/>
                         <outletCollection property="shadowViews" destination="zau-rP-Nr4" collectionClass="NSMutableArray" id="NFd-iP-4Gf"/>
                         <outletCollection property="shadowViews" destination="Ao9-3G-MXT" collectionClass="NSMutableArray" id="nE1-7I-uxA"/>
+                        <outletCollection property="shadowViews" destination="bFl-9U-Su7" collectionClass="NSMutableArray" id="IsP-XF-vbr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9R8-x7-9FR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

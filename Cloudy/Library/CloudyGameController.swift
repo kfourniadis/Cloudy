@@ -14,7 +14,7 @@ extension GCControllerButtonInput {
 
 /// Convenience extension
 extension GCExtendedGamepad {
-    
+
     public enum id: Int {
         case playstation, xbox, stadia, nintendo
         func chromeFormat() -> String {
@@ -23,14 +23,14 @@ extension GCExtendedGamepad {
                 return "Cloudy emulated controller (STANDARD GAMEPAD Vendor: 054c Product: 09cc)"
             case .xbox: // Xbox One S Bluetooth (Dreamcast ABXY, LB, RB, LT, RT)
                 return "Cloudy emulated controller (STANDARD GAMEPAD Vendor: 045e Product: 02fd)"
-            case .stadia: // Stadia controller (Dreamcast ABXY, L1, R1, L2, R2 - same as Apple's layout)
+            case .stadia: // Stadia controller (Dreamcast ABXY, L1, R1, L2, R2 — same as Apple's layout)
                 return "Cloudy emulated controller (STANDARD GAMEPAD Vendor: 18d1 Product: 9400)"
             case .nintendo: // Switch Pro controller (Classic ABXY, L, R, ZL, ZR)
                 return "Cloudy emulated controller (STANDARD GAMEPAD Vendor: 057e Product: 2009)"
             }
         }
     }
-    
+
     /// Convert to json
     func toCloudyController() -> CloudyController? {
         guard let buttonOptions = buttonOptions,
