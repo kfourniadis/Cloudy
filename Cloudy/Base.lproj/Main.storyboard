@@ -373,11 +373,11 @@
                                                                         <rect key="frame" x="0.0" y="116" width="1092" height="50"/>
                                                                         <subviews>
                                                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="lpR-6L-9OT">
-                                                                                <rect key="frame" x="10" y="-5" width="315" height="32"/>
+                                                                                <rect key="frame" x="10" y="-5" width="399" height="32"/>
                                                                                 <segments>
-                                                                                    <segment title="Sony"/>
+                                                                                    <segment title="PlayStation"/>
                                                                                     <segment title="Microsoft"/>
-                                                                                    <segment title="Apple"/>
+                                                                                    <segment title="Made for iOS"/>
                                                                                     <segment title="Nintendo"/>
                                                                                 </segments>
                                                                                 <connections>
@@ -385,7 +385,7 @@
                                                                                 </connections>
                                                                             </segmentedControl>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kU-Sz-C9f" userLabel="Label">
-                                                                                <rect key="frame" x="345" y="0.0" width="125.5" height="20.5"/>
+                                                                                <rect key="frame" x="429" y="0.0" width="125.5" height="20.5"/>
                                                                                 <attributedString key="attributedText">
                                                                                     <fragment content="Controller layout">
                                                                                         <attributes>
