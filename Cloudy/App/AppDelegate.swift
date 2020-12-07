@@ -2,6 +2,7 @@
 
 import UIKit
 import Firebase
+import AVFoundation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -9,6 +10,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Initialize firebase
         FirebaseApp.configure()
+        // request mic permissions
+        AVAudioSession.sharedInstance().requestRecordPermission { _ in }
         // Override point for customization after application launch.
         return true
     }
