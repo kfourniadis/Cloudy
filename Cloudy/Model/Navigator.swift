@@ -28,6 +28,7 @@ class Navigator {
             static let boosteroid     = URL(string: "https://cloud.boosteroid.com")!
             static let nvidiaRoot     = URL(string: "https://www.nvidia.com")!
             static let amazonLuna     = URL(string: "https://amazon.com/luna")!
+            static let gamepadTester  = URL(string: "https://gamepad-tester.com")!
             static let patreon        = URL(string: "https://www.patreon.com/cloudyApp")!
             static let paypal         = URL(string: "https://paypal.me/pools/c/8tPw2veZIm")!
         }
@@ -131,6 +132,6 @@ class Navigator {
            url.starts(with: Config.Url.amazonLuna.absoluteString) {
             return [Scripts.standaloneOverride]
         }
-        return [Scripts.controllerOverride]
+        return [Scripts.controllerOverride()]
     }
 }

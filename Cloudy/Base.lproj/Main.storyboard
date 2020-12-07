@@ -209,28 +209,32 @@
                                                 <rect key="frame" x="10" y="10" width="1072" height="188.5"/>
                                                 <subviews>
                                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_stadia" translatesAutoresizingMaskIntoConstraints="NO" id="0VM-PV-WdW">
-                                                        <rect key="frame" x="0.0" y="0.0" width="178.5" height="188.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="153" height="188.5"/>
                                                     </imageView>
                                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_geforce_now" translatesAutoresizingMaskIntoConstraints="NO" id="Kdq-FP-3hb">
-                                                        <rect key="frame" x="186.5" y="0.0" width="179" height="188.5"/>
+                                                        <rect key="frame" x="161" y="0.0" width="153.5" height="188.5"/>
                                                     </imageView>
                                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_geforce_now_beta" translatesAutoresizingMaskIntoConstraints="NO" id="zau-rP-Nr4" userLabel="Button Geforce Now Beta">
-                                                        <rect key="frame" x="373.5" y="0.0" width="178.5" height="188.5"/>
+                                                        <rect key="frame" x="322.5" y="0.0" width="153" height="188.5"/>
                                                     </imageView>
                                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_luna" translatesAutoresizingMaskIntoConstraints="NO" id="Ao9-3G-MXT" userLabel="Button Luna">
-                                                        <rect key="frame" x="560" y="0.0" width="178.5" height="188.5"/>
+                                                        <rect key="frame" x="483.5" y="0.0" width="153" height="188.5"/>
                                                     </imageView>
                                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_boosteroid" translatesAutoresizingMaskIntoConstraints="NO" id="Wfg-u9-jgh" userLabel="Button Boosteroid">
-                                                        <rect key="frame" x="746.5" y="0.0" width="179" height="188.5"/>
+                                                        <rect key="frame" x="644.5" y="0.0" width="153" height="188.5"/>
+                                                    </imageView>
+                                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_gamepad_tester" id="bFl-9U-Su7">
+                                                        <rect key="frame" x="805.5" y="0.0" width="153.5" height="188.5"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9QP-Bm-aQo">
-                                                        <rect key="frame" x="933.5" y="0.0" width="138.5" height="188.5"/>
+                                                        <rect key="frame" x="967" y="0.0" width="105" height="188.5"/>
                                                         <subviews>
                                                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_patreon" translatesAutoresizingMaskIntoConstraints="NO" id="9yC-sf-omI" userLabel="Button Patreon">
-                                                                <rect key="frame" x="0.0" y="0.0" width="138.5" height="89.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="105" height="89.5"/>
                                                             </imageView>
                                                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_paypal" translatesAutoresizingMaskIntoConstraints="NO" id="wz2-wP-jxe" userLabel="Button PayPal">
-                                                                <rect key="frame" x="0.0" y="99.5" width="138.5" height="89"/>
+                                                                <rect key="frame" x="0.0" y="99.5" width="105" height="89"/>
                                                             </imageView>
                                                         </subviews>
                                                     </stackView>
@@ -271,10 +275,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="1092" height="525.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGP-Ji-Kst">
-                                                        <rect key="frame" x="0.0" y="0.0" width="1092" height="350"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="1092" height="408"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="E19-IG-xpE">
-                                                                <rect key="frame" x="0.0" y="10" width="1092" height="340"/>
+                                                                <rect key="frame" x="0.0" y="10" width="1092" height="398"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="85v-hp-AzR" userLabel="Manual UserAgent">
                                                                         <rect key="frame" x="0.0" y="0.0" width="1092" height="50"/>
@@ -365,8 +369,52 @@
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IkE-mv-Z9A" userLabel="On Screen Controller">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q2P-8c-czw" userLabel="Controller ID">
                                                                         <rect key="frame" x="0.0" y="116" width="1092" height="50"/>
+                                                                        <subviews>
+                                                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="lpR-6L-9OT">
+                                                                                <rect key="frame" x="10" y="-5" width="399" height="32"/>
+                                                                                <segments>
+                                                                                    <segment title="PlayStation"/>
+                                                                                    <segment title="Microsoft"/>
+                                                                                    <segment title="Made for iOS"/>
+                                                                                    <segment title="Nintendo"/>
+                                                                                </segments>
+                                                                                <connections>
+                                                                                    <action selector="onControllerIdChanged:" destination="FIN-ZL-Y0N" eventType="valueChanged" id="qup-IJ-RUp"/>
+                                                                                </connections>
+                                                                            </segmentedControl>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kU-Sz-C9f" userLabel="Label">
+                                                                                <rect key="frame" x="429" y="0.0" width="125.5" height="20.5"/>
+                                                                                <attributedString key="attributedText">
+                                                                                    <fragment content="Controller layout">
+                                                                                        <attributes>
+                                                                                            <font key="NSFont" metaFont="system" size="17"/>
+                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                        </attributes>
+                                                                                    </fragment>
+                                                                                </attributedString>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <viewLayoutGuide key="safeArea" id="dW5-VX-0Ih"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="lpR-6L-9OT" firstAttribute="centerY" secondItem="7kU-Sz-C9f" secondAttribute="centerY" id="C2a-St-FyS"/>
+                                                                            <constraint firstItem="7kU-Sz-C9f" firstAttribute="top" secondItem="Q2P-8c-czw" secondAttribute="top" id="Hcg-jF-3Si"/>
+                                                                            <constraint firstAttribute="height" constant="50" id="KQI-lj-6T8"/>
+                                                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7kU-Sz-C9f" secondAttribute="trailing" constant="20" symbolic="YES" id="bi2-5r-zB6"/>
+                                                                            <constraint firstItem="7kU-Sz-C9f" firstAttribute="leading" secondItem="lpR-6L-9OT" secondAttribute="trailing" constant="20" id="pyq-lH-596"/>
+                                                                            <constraint firstItem="lpR-6L-9OT" firstAttribute="leading" secondItem="Q2P-8c-czw" secondAttribute="leading" constant="10" id="uyf-l1-5N0"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="10"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IkE-mv-Z9A" userLabel="On Screen Controller">
+                                                                        <rect key="frame" x="0.0" y="174" width="1092" height="50"/>
                                                                         <subviews>
                                                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="grV-ih-Oun">
                                                                                 <rect key="frame" x="10" y="-5" width="185" height="32"/>
@@ -408,7 +456,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mEQ-r6-Gbx" userLabel="Touch feedback">
-                                                                        <rect key="frame" x="0.0" y="174" width="1092" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="232" width="1092" height="50"/>
                                                                         <subviews>
                                                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ep6-Ph-t8S">
                                                                                 <rect key="frame" x="10" y="-5" width="291" height="32"/>
@@ -451,7 +499,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gYt-Qe-92F" userLabel="Custom Inject">
-                                                                        <rect key="frame" x="0.0" y="232" width="1092" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="290" width="1092" height="50"/>
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7D-76-MuH">
                                                                                 <rect key="frame" x="10" y="10" width="136" height="30"/>
@@ -485,7 +533,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAd-te-Bru" userLabel="Delete cache">
-                                                                        <rect key="frame" x="0.0" y="290" width="1092" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="348" width="1092" height="50"/>
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7HL-oZ-bIE" userLabel="Delete Cache Button">
                                                                                 <rect key="frame" x="10" y="0.0" width="49" height="25.5"/>
@@ -597,12 +645,14 @@
                         <outlet property="allowInlineFeedback" destination="OQM-5b-cVm" id="AvK-i0-Z5N"/>
                         <outlet property="backButton" destination="LBE-2y-SAm" id="0qk-8X-SQ1"/>
                         <outlet property="buttonBoosteroid" destination="Wfg-u9-jgh" id="DnK-sM-pzF"/>
+                        <outlet property="buttonGamepadTester" destination="bFl-9U-Su7" id="A08-Yh-uU6"/>
                         <outlet property="buttonGeforceNow" destination="Kdq-FP-3hb" id="1GC-Yc-UvH"/>
                         <outlet property="buttonGeforceNowBeta" destination="zau-rP-Nr4" id="RXQ-ns-OVk"/>
                         <outlet property="buttonLuna" destination="Ao9-3G-MXT" id="E6F-Lp-hKH"/>
                         <outlet property="buttonPatreon" destination="9yC-sf-omI" id="Sf3-eG-gLl"/>
                         <outlet property="buttonPayPal" destination="wz2-wP-jxe" id="xL2-1B-WAs"/>
                         <outlet property="buttonStadia" destination="0VM-PV-WdW" id="CxB-kR-0dV"/>
+                        <outlet property="controllerIdSelector" destination="lpR-6L-9OT" id="CU6-rZ-Ges"/>
                         <outlet property="customJsInjection" destination="Dgf-EK-sHG" id="Di4-Iq-hVh"/>
                         <outlet property="forwardButton" destination="HL9-MD-JBo" id="kn6-je-sLp"/>
                         <outlet property="manualUserAgent" destination="LXn-E5-rXe" id="hzl-Bl-Www"/>
@@ -619,6 +669,7 @@
                         <outletCollection property="shadowViews" destination="fbJ-HA-LhZ" collectionClass="NSMutableArray" id="iRk-bH-w78"/>
                         <outletCollection property="shadowViews" destination="zau-rP-Nr4" collectionClass="NSMutableArray" id="NFd-iP-4Gf"/>
                         <outletCollection property="shadowViews" destination="Ao9-3G-MXT" collectionClass="NSMutableArray" id="nE1-7I-uxA"/>
+                        <outletCollection property="shadowViews" destination="bFl-9U-Su7" collectionClass="NSMutableArray" id="IsP-XF-vbr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9R8-x7-9FR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -629,6 +680,7 @@
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="button_boosteroid" width="512" height="512"/>
+        <image name="button_gamepad_tester" width="512" height="512"/>
         <image name="button_geforce_now" width="512" height="512"/>
         <image name="button_geforce_now_beta" width="512" height="512"/>
         <image name="button_luna" width="512" height="514"/>

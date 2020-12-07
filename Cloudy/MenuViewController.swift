@@ -37,9 +37,11 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var buttonStadia:               UIImageView!
     @IBOutlet weak var buttonLuna:                 UIImageView!
     @IBOutlet weak var buttonBoosteroid:           UIImageView!
+    @IBOutlet weak var buttonGamepadTester:        UIImageView!
     @IBOutlet weak var buttonPatreon:              UIImageView!
     @IBOutlet weak var buttonPayPal:               UIImageView!
     @IBOutlet weak var allowInlineFeedback:        UISwitch!
+    @IBOutlet weak var controllerIdSelector:       UISegmentedControl!
     @IBOutlet weak var onScreenControllerSelector: UISegmentedControl!
     @IBOutlet weak var touchFeedbackSelector:      UISegmentedControl!
     @IBOutlet weak var customJsInjection:          UITextField!
@@ -76,6 +78,9 @@ class MenuViewController: UIViewController {
         // tap for luna button
         let tapLuna = UITapGestureRecognizer(target: self, action: #selector(onLunaButtonPressed))
         buttonLuna.addGestureRecognizer(tapLuna)
+        // tap for gamepad tester button
+        let tapGamepadTester = UITapGestureRecognizer(target: self, action: #selector(onGamepadTesterButtonPressed))
+        buttonGamepadTester.addGestureRecognizer(tapGamepadTester)
         // tap for patreon button
         let tapPatreon = UITapGestureRecognizer(target: self, action: #selector(onPatreonButtonPressed))
         buttonPatreon.addGestureRecognizer(tapPatreon)
@@ -86,6 +91,7 @@ class MenuViewController: UIViewController {
         userAgentTextField.text = UserDefaults.standard.manualUserAgent
         manualUserAgent.isOn = UserDefaults.standard.useManualUserAgent
         allowInlineFeedback.isOn = UserDefaults.standard.allowInlineMedia
+        controllerIdSelector.selectedSegmentIndex = UserDefaults.standard.controllerId.rawValue
         onScreenControllerSelector.selectedSegmentIndex = UserDefaults.standard.onScreenControlsLevel.rawValue
         touchFeedbackSelector.selectedSegmentIndex = UserDefaults.standard.touchFeedbackType.rawValue
         customJsInjection.text = UserDefaults.standard.customJsCodeToInject
@@ -205,6 +211,12 @@ extension MenuViewController {
         webController?.navigateTo(address: Navigator.Config.Url.boosteroid.absoluteString)
         hideMenu()
     }
+    
+    /// Handle gamepad tester shortcut
+    @objc func onGamepadTesterButtonPressed(_ sender: Any) {
+        webController?.navigateTo(address: Navigator.Config.Url.gamepadTester.absoluteString)
+        hideMenu()
+    }
 
     /// Handle patreon shortcut
     @objc func onPatreonButtonPressed(_ sender: Any) {
@@ -218,6 +230,15 @@ extension MenuViewController {
         hideMenu()
     }
 
+    /// Controller ID changed in menu
+    @IBAction func onControllerIdChanged(_ sender: Any) {
+        guard let newId = GCExtendedGamepad.id(rawValue: controllerIdSelector.selectedSegmentIndex) else {
+            Log.e("Something went wrong parsing the selected controller ID: \(onScreenControllerSelector.selectedSegmentIndex)")
+            return
+        }
+        UserDefaults.standard.controllerId = newId
+    }
+    
     /// On screen controls value changed in menu
     @IBAction func onOnScreenControlChanged(_ sender: Any) {
         guard let newLevel = OnScreenControlsLevel(rawValue: onScreenControllerSelector.selectedSegmentIndex) else {
