@@ -14,6 +14,7 @@ class FullScreenWKWebView: WKWebView {
 protocol MenuActionsHandler {
     func updateOnScreenController(with value: OnScreenControlsLevel)
     func updateTouchFeedbackType(with value: TouchFeedbackType)
+    func updateScalingFactor(with value: Int)
     func injectCustom(code: String)
 }
 
@@ -25,15 +26,17 @@ class RootViewController: UIViewController, MenuActionsHandler {
     @IBOutlet var containerWebView:            UIView!
     @IBOutlet var containerOnScreenController: UIView!
 
+    @IBOutlet var webviewContstraints: [NSLayoutConstraint]!
+
     /// The hacked webView
-    private var  webView:                        FullScreenWKWebView!
-    private let  navigator:                                   Navigator = Navigator()
+    private var  webView:                                     FullScreenWKWebView!
+    private let  navigator:                                   Navigator       = Navigator()
 
     /// The menu controller
     private var  menu:                                        MenuController? = nil
 
     /// The bridge between controller and web view
-    private let  webViewControllerBridge     = WebViewControllerBridge()
+    private let  webViewControllerBridge                                      = WebViewControllerBridge()
 
     /// The stream view that holds the on screen controls
     private var  streamView:                                  StreamView?
@@ -121,6 +124,7 @@ class RootViewController: UIViewController, MenuActionsHandler {
         streamView.fillParent()
         self.streamView = streamView
         updateOnScreenController(with: UserDefaults.standard.onScreenControlsLevel)
+        updateScalingFactor(with: UserDefaults.standard.webViewScale)
     }
 
     /// Update visibility of onscreen controller
@@ -133,6 +137,11 @@ class RootViewController: UIViewController, MenuActionsHandler {
     /// Update touch feedback change
     func updateTouchFeedbackType(with value: TouchFeedbackType) {
         touchFeedbackGenerator.setFeedbackType(value)
+    }
+
+    /// Update the scaling factor
+    func updateScalingFactor(with value: Int) {
+        webviewContstraints.forEach { $0.constant = CGFloat(value) }
     }
 
     /// Handle code injection

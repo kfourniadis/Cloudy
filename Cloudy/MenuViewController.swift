@@ -45,7 +45,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var onScreenControllerSelector: UISegmentedControl!
     @IBOutlet weak var touchFeedbackSelector:      UISegmentedControl!
     @IBOutlet weak var customJsInjection:          UITextField!
-
+    @IBOutlet weak var scalingFactorTextField:     UITextField!
 
     /// Some injections
     var webController:      WebController?
@@ -95,6 +95,7 @@ class MenuViewController: UIViewController {
         onScreenControllerSelector.selectedSegmentIndex = UserDefaults.standard.onScreenControlsLevel.rawValue
         touchFeedbackSelector.selectedSegmentIndex = UserDefaults.standard.touchFeedbackType.rawValue
         customJsInjection.text = UserDefaults.standard.customJsCodeToInject
+        scalingFactorTextField.text = String(UserDefaults.standard.webViewScale)
         // apply shadows
         shadowViews.forEach { $0.addShadow() }
     }
@@ -211,7 +212,7 @@ extension MenuViewController {
         webController?.navigateTo(address: Navigator.Config.Url.boosteroid.absoluteString)
         hideMenu()
     }
-    
+
     /// Handle gamepad tester shortcut
     @objc func onGamepadTesterButtonPressed(_ sender: Any) {
         webController?.navigateTo(address: Navigator.Config.Url.gamepadTester.absoluteString)
@@ -238,7 +239,7 @@ extension MenuViewController {
         }
         UserDefaults.standard.controllerId = newId
     }
-    
+
     /// On screen controls value changed in menu
     @IBAction func onOnScreenControlChanged(_ sender: Any) {
         guard let newLevel = OnScreenControlsLevel(rawValue: onScreenControllerSelector.selectedSegmentIndex) else {
@@ -271,5 +272,16 @@ extension MenuViewController {
             return
         }
         menuActionsHandler?.injectCustom(code: code)
+    }
+
+    /// Scaling changed
+    @IBAction func onScalingFactorChanged(_ sender: Any) {
+        guard let text = scalingFactorTextField.text,
+              let factor = Int(text) else {
+            Log.e("Something went wrong parsing the scaling factor: \(scalingFactorTextField.text ?? "nil")")
+            return
+        }
+        UserDefaults.standard.webViewScale = -factor
+        menuActionsHandler?.updateScalingFactor(with: -factor)
     }
 }

@@ -15,10 +15,11 @@ import Foundation
         static let onScreenControlsLevel = "onScreenControlsLevel"
         static let touchFeedbackType     = "touchFeedbackType"
         static let customJsCodeToInject  = "customJsCodeToInject"
+        static let webViewScale          = "webViewScale"
     }
 
     /// Read / write the last visited url
-    var       lastVisitedUrl:        URL? {
+    var          lastVisitedUrl:        URL? {
         get {
             UserDefaults.standard.url(forKey: Config.lastVisitedUrlKey)
         }
@@ -28,7 +29,7 @@ import Foundation
     }
 
     /// Read / write the manually overwritten user agent
-    var       manualUserAgent:       String? {
+    var          manualUserAgent:       String? {
         get {
             UserDefaults.standard.string(forKey: Config.manualUserAgent)
         }
@@ -38,7 +39,7 @@ import Foundation
     }
 
     /// Read / write the flag if the manual user agent should be used
-    var       useManualUserAgent:    Bool {
+    var          useManualUserAgent:    Bool {
         get {
             if UserDefaults.standard.object(forKey: Config.useManualUserAgent) == nil {
                 return false
@@ -51,7 +52,7 @@ import Foundation
     }
 
     /// Read / write allow inline media enabled flag
-    var       allowInlineMedia:      Bool {
+    var          allowInlineMedia:      Bool {
         get {
             if UserDefaults.standard.object(forKey: Config.allowInlineMedia) == nil {
                 return true
@@ -64,7 +65,7 @@ import Foundation
     }
 
     /// Read / write flag for controller ID
-    @nonobjc var controllerId: GCExtendedGamepad.id {
+    @nonobjc var controllerId:          GCExtendedGamepad.id {
         get {
             if UserDefaults.standard.object(forKey: Config.controllerId) == nil {
                 return .xbox
@@ -75,9 +76,9 @@ import Foundation
             UserDefaults.standard.set(newValue.rawValue, forKey: Config.controllerId)
         }
     }
-    
+
     /// Read / write flag for on screen controller
-    @objc var onScreenControlsLevel: OnScreenControlsLevel {
+    @objc var    onScreenControlsLevel: OnScreenControlsLevel {
         get {
             if UserDefaults.standard.object(forKey: Config.onScreenControlsLevel) == nil {
                 return .off
@@ -90,7 +91,7 @@ import Foundation
     }
 
     /// Read / write flag for on screen controller feedback type
-    @objc var touchFeedbackType:    TouchFeedbackType {
+    @objc var    touchFeedbackType:     TouchFeedbackType {
         get {
             if UserDefaults.standard.object(forKey: Config.touchFeedbackType) == nil {
                 return .off
@@ -103,12 +104,22 @@ import Foundation
     }
 
     /// Read / write the custom js injection
-    var       customJsCodeToInject: String? {
+    var          customJsCodeToInject:  String? {
         get {
             UserDefaults.standard.string(forKey: Config.customJsCodeToInject)
         }
         set {
             UserDefaults.standard.set(newValue, forKey: Config.customJsCodeToInject)
+        }
+    }
+
+    /// Read / write the webView scale
+    var          webViewScale:          Int {
+        get {
+            UserDefaults.standard.integer(forKey: Config.webViewScale)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Config.webViewScale)
         }
     }
 
