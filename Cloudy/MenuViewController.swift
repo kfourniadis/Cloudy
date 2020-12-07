@@ -46,6 +46,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var touchFeedbackSelector:      UISegmentedControl!
     @IBOutlet weak var customJsInjection:          UITextField!
     @IBOutlet weak var scalingFactorTextField:     UITextField!
+    @IBOutlet weak var versionLabel:               UILabel!
 
     /// Some injections
     var webController:      WebController?
@@ -98,6 +99,19 @@ class MenuViewController: UIViewController {
         scalingFactorTextField.text = String(UserDefaults.standard.webViewScale)
         // apply shadows
         shadowViews.forEach { $0.addShadow() }
+        // update stuff
+        updateVersionLabel()
+    }
+
+    /// Set version to label
+    private func updateVersionLabel() {
+        guard let versionNumber = Bundle.main.releaseVersionNumber,
+              let buildNumber = Bundle.main.buildVersionNumber else {
+            Log.e("Invalid version and build number")
+            versionLabel.text = "invalid"
+            return
+        }
+        versionLabel.text = "Cloudy v\(versionNumber)(\(buildNumber))"
     }
 }
 

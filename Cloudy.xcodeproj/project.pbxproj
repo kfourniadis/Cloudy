@@ -17,6 +17,7 @@
 		44A4D3B8AE0372A4C71E32EC /* TemporarySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4DF345C0AE58872E1CC3A /* TemporarySettings.swift */; };
 		44A4D4CD5F66196CB7AD5CB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4D965A769BDED09733089 /* AppDelegate.swift */; };
 		44A4D56785DE2ACC82B37F52 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4D1A39583BB7F49ABD541 /* Log.swift */; };
+		44A4D667E367AB98368C36BC /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4D80ED7881A56C23C0BBD /* Bundle.swift */; };
 		44A4D7DCB15B8C4799D56BCA /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4D0057BF82C52A8F76A38 /* String.swift */; };
 		44A4D81D6A823FB908BCE224 /* AVFoundationVibratingFeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4D01AC2645E64C1EB9CF9 /* AVFoundationVibratingFeedbackGenerator.swift */; };
 		44A4D8885DB5BE5C73C9FB87 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4D3A1BA3A8B2AB96CB81B /* UserDefaults.swift */; };
@@ -61,6 +62,7 @@
 		44A4D70BD73D663A3E27A322 /* CloudyGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudyGameController.swift; sourceTree = "<group>"; };
 		44A4D7B73DC83248F99BFA6F /* Limelight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Limelight.h; sourceTree = "<group>"; };
 		44A4D7CF8072725D6F7680F7 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		44A4D80ED7881A56C23C0BBD /* Bundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		44A4D8A659024EF865AEB5D4 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		44A4D965A769BDED09733089 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44A4D996514DEB85071D2DA7 /* X1Kit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = X1Kit.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				44A4D999AA39891699C55D00 /* GameController.swift */,
 				44A4D28CC8536DDE9F1F0250 /* WKWebView.swift */,
 				44A4D0057BF82C52A8F76A38 /* String.swift */,
+				44A4D80ED7881A56C23C0BBD /* Bundle.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				44A4DCA503A87B314B8CB75A /* ButtonOptionSet.swift in Sources */,
 				44A4D81D6A823FB908BCE224 /* AVFoundationVibratingFeedbackGenerator.swift in Sources */,
 				44A4D1A9A30B84DCDD3F66C7 /* Scripts.swift in Sources */,
+				44A4D667E367AB98368C36BC /* Bundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
