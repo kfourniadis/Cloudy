@@ -72,6 +72,9 @@ class RootViewController: UIViewController, MenuActionsHandler {
         config.mediaTypesRequiringUserActionForPlayback = []
         config.applicationNameForUserAgent = "Version/13.0.1 Safari/605.1.15"
         config.userContentController.addScriptMessageHandler(webViewControllerBridge, contentWorld: WKContentWorld.page, name: "controller")
+        config.userContentController.addUserScript(WKUserScript(source: Scripts.standaloneOverride,
+                                                                injectionTime: .atDocumentEnd,
+                                                                forMainFrameOnly: true))
         config.preferences = preferences
         return config
     }()
