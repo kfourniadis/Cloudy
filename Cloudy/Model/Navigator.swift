@@ -8,12 +8,6 @@ class Navigator {
 
     /// Some global constants
     struct Config {
-        static let stadiaWarning                  = "https://stadia.google.com/warning/"
-        static let stadiaWarningRedirectReason9   = "redirect_reasons=9"
-        static let stadiaWarningRedirectReason10  = "redirect_reasons=10"
-        static let googleAccountsWarning          = "deniedsigninrejected"
-        static let signInString                   = "signin"
-
         /// Mapping from a alias to a full url
         static let aliasMapping: [String: String] = [
             "stadia": Url.googleStadia.absoluteString,
@@ -36,7 +30,7 @@ class Navigator {
         struct UserAgent {
             static let chromeDesktop = "Mozilla/5.0 (X11; CrOS aarch64 13099.85.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.110 Safari/537.36"
             static let iPhone        = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15"
-            static let safariIOS     = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.1 Safari/605.1.15"
+            static let safariIOS     = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Safari/605.1.15"
         }
     }
 
@@ -69,17 +63,6 @@ class Navigator {
         if useManualUserAgent {
             return Navigation(userAgent: manualUserAgent, forwardToUrl: nil, bridgeType: .regular)
         }
-        // error happened with stadia, navigate to it directly
-        if navigationUrl.starts(with: Config.stadiaWarning) &&
-           (navigationUrl.reversed().starts(with: Config.stadiaWarningRedirectReason9.reversed()) ||
-            navigationUrl.reversed().starts(with: Config.stadiaWarningRedirectReason10.reversed())) {
-            return Navigation(userAgent: Config.UserAgent.chromeDesktop, forwardToUrl: Config.Url.googleStadia, bridgeType: .regular)
-        }
-        // google account error occurred
-        if navigationUrl.starts(with: Config.Url.googleAccounts.absoluteString) &&
-           navigationUrl.contains(Config.googleAccountsWarning) {
-            return Navigation(userAgent: nil, forwardToUrl: Config.Url.googleAccounts, bridgeType: .regular)
-        }
         // regular google stadia
         if navigationUrl.isEqualTo(other: Config.Url.googleStadia.absoluteString) {
             return Navigation(userAgent: Config.UserAgent.chromeDesktop, forwardToUrl: nil, bridgeType: .regular)
@@ -90,7 +73,8 @@ class Navigator {
             return Navigation(userAgent: Config.UserAgent.chromeDesktop, forwardToUrl: nil, bridgeType: .regular)
         }
         // geforce now beta
-        if navigationUrl.starts(with: Config.Url.geforceNowBeta.absoluteString) {
+        if navigationUrl.starts(with: Config.Url.geforceNowBeta.absoluteString) ||
+           navigationUrl.starts(with: Config.Url.googleStadia.absoluteString) {
             return Navigation(userAgent: Config.UserAgent.safariIOS, forwardToUrl: nil, bridgeType: .regular)
         }
         // amazon luna
@@ -101,11 +85,7 @@ class Navigator {
         if navigationUrl.starts(with: Config.Url.boosteroid.absoluteString) {
             return Navigation(userAgent: Config.UserAgent.chromeDesktop, forwardToUrl: nil, bridgeType: .regular)
         }
-        // some problem with signing
-        if navigationUrl.contains(Config.signInString) {
-            return Navigation(userAgent: nil, forwardToUrl: nil, bridgeType: .regular)
-        }
-        return Navigation(userAgent: manualUserAgent, forwardToUrl: nil, bridgeType: .regular)
+        return Navigation(userAgent: nil, forwardToUrl: nil, bridgeType: .regular)
     }
 
     /// Handle popup
@@ -129,7 +109,8 @@ class Navigator {
         }
         // regular geforce now
         if url.starts(with: Config.Url.geforceNowBeta.absoluteString) &&
-           url.starts(with: Config.Url.amazonLuna.absoluteString) {
+           url.starts(with: Config.Url.amazonLuna.absoluteString) ||
+           url.starts(with: Config.Url.googleStadia.absoluteString) {
             return [Scripts.standaloneOverride]
         }
         return [Scripts.controllerOverride()]
