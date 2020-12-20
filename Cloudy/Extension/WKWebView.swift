@@ -20,8 +20,6 @@ protocol WebController {
 
 extension WKWebView: WebController {
 
-
-
     /// The message used for the handler
     static let messageHandlerName: String = "controller"
 

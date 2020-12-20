@@ -21,10 +21,11 @@ class WebViewControllerBridge: NSObject, WKScriptMessageHandlerWithReply, Contro
     /// Alias for the reply type back to the webWiew
     typealias ReplyHandlerType = (Any?, String?) -> Void
 
-    private var controllerData:         [ControlsSource: CloudyController] = [:]
+    private var controllerData:                 [ControlsSource: CloudyController] = [:]
 
     /// Remember last controller snapshot
-    private var lastControllerSnapshot: GCExtendedGamepad?                 = nil
+    private var lastExternalControllerSnapshot: GCExtendedGamepad?                 = nil
+    private var lastTouchControllerSnapShot:    CloudyController?                  = nil
 
     /// current export type
     var exportType:     CloudyController.JsonType = .regular
@@ -61,23 +62,32 @@ class WebViewControllerBridge: NSObject, WKScriptMessageHandlerWithReply, Contro
             return
         }
         // nothing changed, skip
-        if let lastControllerState = lastControllerSnapshot,
+        if let lastControllerState = lastExternalControllerSnapshot,
            lastControllerState =~ currentControllerState {
             replyHandler(nil, nil)
             return
         }
         // update and save
-        lastControllerSnapshot = currentControllerState.capture()
+        lastExternalControllerSnapshot = currentControllerState.capture()
         replyHandler(currentControllerState.toCloudyController()?.toJson(for: exportType), nil)
     }
 
     /// Handle touch controller
     private func handleTouchController(with replyHandler: @escaping ReplyHandlerType) {
-        if let controllerData = controllerData[.onScreen] {
-            replyHandler(controllerData.toJson(for: exportType), nil)
+        // early exit
+        guard let currentControllerData = controllerData[.onScreen] else {
+            replyHandler(nil, nil)
             return
         }
-        replyHandler(nil, nil)
+        // nothing changed, skip
+        if let lastControllerData = lastTouchControllerSnapShot,
+           lastControllerData =~ currentControllerData {
+            replyHandler(nil, nil)
+            return
+        }
+        // update and save
+        lastTouchControllerSnapShot = currentControllerData
+        replyHandler(currentControllerData.toJson(for: exportType), nil)
     }
 
     /// Receive the controller data

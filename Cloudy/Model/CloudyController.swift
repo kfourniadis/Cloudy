@@ -39,6 +39,13 @@ private var shouldPulse: Bool = false
         static var untouched: Button {
             Button(pressed: false, touched: false, value: 0)
         }
+
+        /// Check all values for similarity
+        static func =~(lhs: Button, rhs: Button) -> Bool {
+            lhs.pressed == rhs.pressed &&
+            lhs.touched == rhs.touched &&
+            lhs.value =~ rhs.value
+        }
     }
 
     /// Axes and buttons are the only dynamic values
@@ -114,6 +121,34 @@ private var shouldPulse: Bool = false
             return "{}"
         }
         return string
+    }
+
+    /// Check all values for similarity
+    static func =~(lhs: CloudyController, rhs: CloudyController) -> Bool {
+        for index in 0..<lhs.axes.count {
+            guard let lhsAxis = lhs.axes[safe: index],
+                  let rhsAxis = rhs.axes[safe: index],
+                  lhsAxis =~ rhsAxis else {
+                return false
+            }
+        }
+        for index in 0..<lhs.buttons.count {
+            guard let lhsButton = lhs.buttons[safe: index],
+                  let lhsButtonNonNil = lhsButton,
+                  let rhsButton = rhs.buttons[safe: index],
+                  let rhsButtonNonNil = rhsButton,
+                  lhsButtonNonNil =~ rhsButtonNonNil else {
+                return false
+            }
+        }
+        if lhs.timestamp =~ rhs.timestamp &&
+           lhs.id == rhs.id &&
+           lhs.index == rhs.index &&
+           lhs.connected == rhs.connected &&
+           lhs.mapping == rhs.mapping {
+            return true
+        }
+        return false
     }
 
 }

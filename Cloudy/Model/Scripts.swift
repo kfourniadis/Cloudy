@@ -38,7 +38,8 @@ struct Scripts {
                                                             emulatedGamepad.buttons[i].value   = data.buttons[i].value;
                                                         }
                                                         emulatedGamepad.timestamp = performance.now();
-                                                        // console.log(emulatedGamepad);
+                                                             emulatedGamepad.id        = data.id;
+                                                             // console.log(emulatedGamepad);
                                                     } catch(e) { 
                                                         console.error("something went wrong: " + e);  
                                                     }
