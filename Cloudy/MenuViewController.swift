@@ -41,6 +41,8 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var buttonPatreon:              UIImageView!
     @IBOutlet weak var buttonPayPal:               UIImageView!
     @IBOutlet weak var allowInlineFeedback:        UISwitch!
+    @IBOutlet weak var standaloneSwitch:           UISwitch!
+    @IBOutlet weak var controllerHackSwitch:       UISwitch!
     @IBOutlet weak var controllerIdSelector:       UISegmentedControl!
     @IBOutlet weak var onScreenControllerSelector: UISegmentedControl!
     @IBOutlet weak var touchFeedbackSelector:      UISegmentedControl!
@@ -92,6 +94,8 @@ class MenuViewController: UIViewController {
         userAgentTextField.text = UserDefaults.standard.manualUserAgent
         manualUserAgent.isOn = UserDefaults.standard.useManualUserAgent
         allowInlineFeedback.isOn = UserDefaults.standard.allowInlineMedia
+        standaloneSwitch.isOn = UserDefaults.standard.actAsStandaloneApp
+        controllerHackSwitch.isOn = UserDefaults.standard.injectControllerScripts
         controllerIdSelector.selectedSegmentIndex = UserDefaults.standard.controllerId.rawValue
         onScreenControllerSelector.selectedSegmentIndex = UserDefaults.standard.onScreenControlsLevel.rawValue
         touchFeedbackSelector.selectedSegmentIndex = UserDefaults.standard.touchFeedbackType.rawValue
@@ -187,6 +191,16 @@ extension MenuViewController {
         UserDefaults.standard.allowInlineMedia = allowInlineFeedback.isOn
     }
 
+    /// Change standalone behavior
+    @IBAction func onStandaloneValueChanged(_ sender: Any) {
+        UserDefaults.standard.actAsStandaloneApp = standaloneSwitch.isOn
+    }
+
+    /// Change controller hack injection behavior
+    @IBAction func onControllerHacksValueChanged(_ sender: Any) {
+        UserDefaults.standard.injectControllerScripts = controllerHackSwitch.isOn
+    }
+
     /// User agent value changed
     @IBAction func onUserAgentValueChanged(_ sender: Any) {
         UserDefaults.standard.manualUserAgent = userAgentTextField.text
@@ -205,7 +219,7 @@ extension MenuViewController {
 
     /// Handle geforce now shortcut
     @objc func onGeforceNowButtonPressed(_ sender: Any) {
-        webController?.navigateTo(address: Navigator.Config.Url.geforceNow.absoluteString)
+        webController?.navigateTo(address: Navigator.Config.Url.geforceNowOld.absoluteString)
         hideMenu()
     }
 

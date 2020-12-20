@@ -11,13 +11,13 @@ class Navigator {
         /// Mapping from a alias to a full url
         static let aliasMapping: [String: String] = [
             "stadia": Url.googleStadia.absoluteString,
-            "gfn": Url.geforceNow.absoluteString,
+            "gfn": Url.geforceNowOld.absoluteString,
         ]
 
         struct Url {
             static let googleStadia   = URL(string: "https://stadia.google.com")!
             static let googleAccounts = URL(string: "https://accounts.google.com")!
-            static let geforceNow     = URL(string: "https://play.geforcenow.com")!
+            static let geforceNowOld  = URL(string: "https://play.geforcenow.com")!
             static let geforceNowBeta = URL(string: "https://beta.play.geforcenow.com")!
             static let boosteroid     = URL(string: "https://cloud.boosteroid.com")!
             static let nvidiaRoot     = URL(string: "https://www.nvidia.com")!
@@ -28,7 +28,8 @@ class Navigator {
         }
 
         struct UserAgent {
-            static let chromeDesktop = "Mozilla/5.0 (X11; CrOS aarch64 13099.85.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.110 Safari/537.36"
+            static let chromeDesktop = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+            static let chromeOS      = "Mozilla/5.0 (X11; CrOS aarch64 13099.85.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.110 Safari/537.36"
             static let iPhone        = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15"
             static let safariIOS     = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Safari/605.1.15"
         }
@@ -41,49 +42,21 @@ class Navigator {
         let bridgeType:   CloudyController.JsonType
     }
 
-    /// The manual fixed user agent override
-    var manualUserAgent:    String? {
-        UserDefaults.standard.manualUserAgent
-    }
-
-    /// Wrapper around user defaults saved user agent enabled / disabled flag
-    var useManualUserAgent: Bool {
-        UserDefaults.standard.useManualUserAgent
-    }
-
     /// Map navigation address
     func getNavigation(for address: String?) -> Navigation {
         // early exit
         guard let requestedUrl = address else {
-            return Navigation(userAgent: manualUserAgent, forwardToUrl: nil, bridgeType: .regular)
+            return Navigation(userAgent: nil, forwardToUrl: nil, bridgeType: .regular)
+        }
+        // no automatic navigation
+        if UserDefaults.standard.useManualUserAgent {
+            return Navigation(userAgent: UserDefaults.standard.manualUserAgent, forwardToUrl: nil, bridgeType: .regular)
         }
         // map alias
         let navigationUrl = Config.aliasMapping[requestedUrl] ?? requestedUrl
-        // no automatic navigation
-        if useManualUserAgent {
-            return Navigation(userAgent: manualUserAgent, forwardToUrl: nil, bridgeType: .regular)
-        }
-        // regular google stadia
-        if navigationUrl.isEqualTo(other: Config.Url.googleStadia.absoluteString) {
-            return Navigation(userAgent: Config.UserAgent.chromeDesktop, forwardToUrl: nil, bridgeType: .regular)
-        }
-        // regular geforce now
-        if navigationUrl.starts(with: Config.Url.geforceNow.absoluteString) ||
-           navigationUrl.starts(with: Config.Url.nvidiaRoot.absoluteString) {
-            return Navigation(userAgent: Config.UserAgent.chromeDesktop, forwardToUrl: nil, bridgeType: .regular)
-        }
-        // geforce now beta
-        if navigationUrl.starts(with: Config.Url.geforceNowBeta.absoluteString) ||
-           navigationUrl.starts(with: Config.Url.googleStadia.absoluteString) {
-            return Navigation(userAgent: Config.UserAgent.safariIOS, forwardToUrl: nil, bridgeType: .regular)
-        }
-        // amazon luna
-        if navigationUrl.starts(with: Config.Url.amazonLuna.absoluteString) {
-            return Navigation(userAgent: Config.UserAgent.safariIOS, forwardToUrl: nil, bridgeType: .regular)
-        }
-        // boosteroid
-        if navigationUrl.starts(with: Config.Url.boosteroid.absoluteString) {
-            return Navigation(userAgent: Config.UserAgent.chromeDesktop, forwardToUrl: nil, bridgeType: .regular)
+        // old regular geforce now
+        if navigationUrl.starts(with: Config.Url.geforceNowOld.absoluteString) {
+            return Navigation(userAgent: Config.UserAgent.chromeOS, forwardToUrl: nil, bridgeType: .regular)
         }
         return Navigation(userAgent: nil, forwardToUrl: nil, bridgeType: .regular)
     }
@@ -98,21 +71,5 @@ class Navigator {
             return false
         }
         return true
-    }
-
-    /// Determine if script should be injected
-    func scriptsToInject(for url: String) -> [String] {
-        // regular geforce now
-        if url.starts(with: Config.Url.geforceNow.absoluteString) ||
-           url.starts(with: Config.Url.nvidiaRoot.absoluteString) {
-            return []
-        }
-        // regular geforce now
-        if url.starts(with: Config.Url.geforceNowBeta.absoluteString) &&
-           url.starts(with: Config.Url.amazonLuna.absoluteString) ||
-           url.starts(with: Config.Url.googleStadia.absoluteString) {
-            return [Scripts.standaloneOverride]
-        }
-        return [Scripts.controllerOverride()]
     }
 }

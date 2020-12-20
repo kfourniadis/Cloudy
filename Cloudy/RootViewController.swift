@@ -70,11 +70,18 @@ class RootViewController: UIViewController, MenuActionsHandler {
         config.allowsAirPlayForMediaPlayback = false
         config.allowsPictureInPictureMediaPlayback = false
         config.mediaTypesRequiringUserActionForPlayback = []
-        config.applicationNameForUserAgent = "Version/13.0.1 Safari/605.1.15"
+        config.applicationNameForUserAgent = "Version/14.0.2 Safari/605.1.15"
         config.userContentController.addScriptMessageHandler(webViewControllerBridge, contentWorld: WKContentWorld.page, name: "controller")
-        config.userContentController.addUserScript(WKUserScript(source: Scripts.standaloneOverride,
-                                                                injectionTime: .atDocumentEnd,
-                                                                forMainFrameOnly: true))
+        if UserDefaults.standard.actAsStandaloneApp {
+            config.userContentController.addUserScript(WKUserScript(source: Scripts.standaloneOverride,
+                                                                    injectionTime: .atDocumentEnd,
+                                                                    forMainFrameOnly: true))
+        }
+        if UserDefaults.standard.injectControllerScripts {
+            config.userContentController.addUserScript(WKUserScript(source: Scripts.controllerOverride(),
+                                                                    injectionTime: .atDocumentEnd,
+                                                                    forMainFrameOnly: true))
+        }
         config.preferences = preferences
         return config
     }()
@@ -222,13 +229,7 @@ extension RootViewController: WKNavigationDelegate, WKUIDelegate {
 
     /// When a page finished loading, inject the controller override script
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        // early exit
-        guard let url = webView.url?.absoluteString else {
-            return
-        }
-        // inject the script
-        webView.inject(scripts: navigator.scriptsToInject(for: url))
-        // update address
+        // update url
         menu?.updateAddressBar(with: AddressBarInfo(url: webView.url?.absoluteString,
                                                     canGoBack: webView.canGoBack,
                                                     canGoForward: webView.canGoForward))

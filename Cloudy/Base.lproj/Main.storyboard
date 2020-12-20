@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad10_5" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -279,10 +279,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="1092" height="525.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGP-Ji-Kst">
-                                                        <rect key="frame" x="0.0" y="0.0" width="1092" height="932"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="1092" height="1048"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="E19-IG-xpE">
-                                                                <rect key="frame" x="0.0" y="10" width="1092" height="922"/>
+                                                                <rect key="frame" x="0.0" y="10" width="1092" height="1038"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Zt-T8-Og7">
                                                                         <rect key="frame" x="0.0" y="0.0" width="1092" height="50"/>
@@ -392,8 +392,96 @@
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q2P-8c-czw" userLabel="Controller ID">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tl4-LV-QTt" userLabel="Act as standalone">
                                                                         <rect key="frame" x="0.0" y="174" width="1092" height="50"/>
+                                                                        <subviews>
+                                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pSB-aR-1ri" userLabel="Standalone">
+                                                                                <rect key="frame" x="10" y="-5" width="51" height="31"/>
+                                                                                <connections>
+                                                                                    <action selector="onStandaloneValueChanged:" destination="FIN-ZL-Y0N" eventType="valueChanged" id="5lF-OJ-fm9"/>
+                                                                                </connections>
+                                                                            </switch>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmU-3H-feq" userLabel="Label">
+                                                                                <rect key="frame" x="69" y="0.0" width="320" height="20.5"/>
+                                                                                <attributedString key="attributedText">
+                                                                                    <fragment content="Act as standalone like a PWA ">
+                                                                                        <attributes>
+                                                                                            <font key="NSFont" metaFont="system" size="17"/>
+                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                        </attributes>
+                                                                                    </fragment>
+                                                                                    <fragment content="(requires restart)">
+                                                                                        <attributes>
+                                                                                            <font key="NSFont" metaFont="cellTitle"/>
+                                                                                            <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                        </attributes>
+                                                                                    </fragment>
+                                                                                </attributedString>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="pSB-aR-1ri" firstAttribute="leading" secondItem="Tl4-LV-QTt" secondAttribute="leading" constant="10" id="785-am-WTK"/>
+                                                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UmU-3H-feq" secondAttribute="trailing" constant="20" symbolic="YES" id="906-1H-lPD"/>
+                                                                            <constraint firstItem="UmU-3H-feq" firstAttribute="leading" secondItem="pSB-aR-1ri" secondAttribute="trailing" constant="10" id="Ff2-85-kAp"/>
+                                                                            <constraint firstItem="pSB-aR-1ri" firstAttribute="centerY" secondItem="UmU-3H-feq" secondAttribute="centerY" id="SK8-2Z-pO3"/>
+                                                                            <constraint firstItem="UmU-3H-feq" firstAttribute="top" secondItem="Tl4-LV-QTt" secondAttribute="top" id="TVh-1m-fn5"/>
+                                                                            <constraint firstAttribute="height" constant="50" id="WPy-VU-oNr"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="10"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Teq-Sc-YtB" userLabel="Controller hacks">
+                                                                        <rect key="frame" x="0.0" y="232" width="1092" height="50"/>
+                                                                        <subviews>
+                                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SeT-u4-e4H" userLabel="Controller hacks">
+                                                                                <rect key="frame" x="10" y="-5" width="51" height="31"/>
+                                                                                <connections>
+                                                                                    <action selector="onControllerHacksValueChanged:" destination="FIN-ZL-Y0N" eventType="valueChanged" id="hpS-Sr-ic9"/>
+                                                                                </connections>
+                                                                            </switch>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j60-Tn-7CF" userLabel="Label">
+                                                                                <rect key="frame" x="69" y="0.0" width="347" height="20.5"/>
+                                                                                <attributedString key="attributedText">
+                                                                                    <fragment content="Inject custom controller override ">
+                                                                                        <attributes>
+                                                                                            <font key="NSFont" metaFont="system" size="17"/>
+                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                        </attributes>
+                                                                                    </fragment>
+                                                                                    <fragment content="(requires restart)">
+                                                                                        <attributes>
+                                                                                            <font key="NSFont" metaFont="cellTitle"/>
+                                                                                            <font key="NSOriginalFont" metaFont="cellTitle"/>
+                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                        </attributes>
+                                                                                    </fragment>
+                                                                                </attributedString>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="j60-Tn-7CF" secondAttribute="trailing" constant="20" symbolic="YES" id="Ghk-nP-otF"/>
+                                                                            <constraint firstItem="SeT-u4-e4H" firstAttribute="leading" secondItem="Teq-Sc-YtB" secondAttribute="leading" constant="10" id="K7w-bX-fIJ"/>
+                                                                            <constraint firstAttribute="height" constant="50" id="SJr-fn-F5w"/>
+                                                                            <constraint firstItem="SeT-u4-e4H" firstAttribute="centerY" secondItem="j60-Tn-7CF" secondAttribute="centerY" id="Zca-Zi-Act"/>
+                                                                            <constraint firstItem="j60-Tn-7CF" firstAttribute="leading" secondItem="SeT-u4-e4H" secondAttribute="trailing" constant="10" id="ikQ-JI-Rd4"/>
+                                                                            <constraint firstItem="j60-Tn-7CF" firstAttribute="top" secondItem="Teq-Sc-YtB" secondAttribute="top" id="t8R-UN-AlF"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="10"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q2P-8c-czw" userLabel="Controller ID">
+                                                                        <rect key="frame" x="0.0" y="290" width="1092" height="50"/>
                                                                         <subviews>
                                                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="lpR-6L-9OT">
                                                                                 <rect key="frame" x="10" y="-5" width="399" height="32"/>
@@ -437,7 +525,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IkE-mv-Z9A" userLabel="On Screen Controller">
-                                                                        <rect key="frame" x="0.0" y="232" width="1092" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="348" width="1092" height="50"/>
                                                                         <subviews>
                                                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="grV-ih-Oun">
                                                                                 <rect key="frame" x="10" y="-5" width="185" height="32"/>
@@ -451,11 +539,17 @@
                                                                                 </connections>
                                                                             </segmentedControl>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="td2-Ny-Ux1" userLabel="Label">
-                                                                                <rect key="frame" x="215" y="0.0" width="198" height="20.5"/>
+                                                                                <rect key="frame" x="215" y="0.0" width="289" height="20.5"/>
                                                                                 <attributedString key="attributedText">
-                                                                                    <fragment content="Show on screen controller">
+                                                                                    <fragment content="Show on screen controller ">
                                                                                         <attributes>
                                                                                             <font key="NSFont" metaFont="system" size="17"/>
+                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                        </attributes>
+                                                                                    </fragment>
+                                                                                    <fragment content="(requires restart)">
+                                                                                        <attributes>
+                                                                                            <font key="NSFont" size="12" name="HelveticaNeue"/>
                                                                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                                         </attributes>
                                                                                     </fragment>
@@ -479,7 +573,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mEQ-r6-Gbx" userLabel="Touch feedback">
-                                                                        <rect key="frame" x="0.0" y="290" width="1092" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="406" width="1092" height="50"/>
                                                                         <subviews>
                                                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ep6-Ph-t8S">
                                                                                 <rect key="frame" x="10" y="-5" width="291" height="32"/>
@@ -522,7 +616,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NkC-mV-DXq" userLabel="Scaling">
-                                                                        <rect key="frame" x="0.0" y="348" width="1092" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="464" width="1092" height="50"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scaling" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSj-hn-Nbl">
                                                                                 <rect key="frame" x="10" y="0.0" width="55.5" height="50"/>
@@ -558,7 +652,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gYt-Qe-92F" userLabel="Custom Inject">
-                                                                        <rect key="frame" x="0.0" y="406" width="1092" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="522" width="1092" height="50"/>
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7D-76-MuH">
                                                                                 <rect key="frame" x="10" y="10" width="136" height="30"/>
@@ -592,7 +686,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAd-te-Bru" userLabel="Delete cache">
-                                                                        <rect key="frame" x="0.0" y="464" width="1092" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="580" width="1092" height="50"/>
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7HL-oZ-bIE" userLabel="Delete Cache Button">
                                                                                 <rect key="frame" x="10" y="0.0" width="49" height="25.5"/>
@@ -630,7 +724,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JFX-9d-gcg" userLabel="DUMMY">
-                                                                        <rect key="frame" x="0.0" y="522" width="1092" height="400"/>
+                                                                        <rect key="frame" x="0.0" y="638" width="1092" height="400"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="400" id="c6l-UO-5gd"/>
@@ -718,12 +812,14 @@
                         <outlet property="buttonPatreon" destination="9yC-sf-omI" id="Sf3-eG-gLl"/>
                         <outlet property="buttonPayPal" destination="wz2-wP-jxe" id="xL2-1B-WAs"/>
                         <outlet property="buttonStadia" destination="0VM-PV-WdW" id="CxB-kR-0dV"/>
+                        <outlet property="controllerHackSwitch" destination="SeT-u4-e4H" id="a17-wb-xDT"/>
                         <outlet property="controllerIdSelector" destination="lpR-6L-9OT" id="CU6-rZ-Ges"/>
                         <outlet property="customJsInjection" destination="Dgf-EK-sHG" id="Di4-Iq-hVh"/>
                         <outlet property="forwardButton" destination="HL9-MD-JBo" id="kn6-je-sLp"/>
                         <outlet property="manualUserAgent" destination="LXn-E5-rXe" id="hzl-Bl-Www"/>
                         <outlet property="onScreenControllerSelector" destination="grV-ih-Oun" id="06G-0H-EUm"/>
                         <outlet property="scalingFactorTextField" destination="kVp-T1-lSL" id="0EK-vJ-Bwq"/>
+                        <outlet property="standaloneSwitch" destination="pSB-aR-1ri" id="Cx3-dN-ioW"/>
                         <outlet property="touchFeedbackSelector" destination="ep6-Ph-t8S" id="vwu-1o-OVo"/>
                         <outlet property="userAgentTextField" destination="Vuy-QH-aB5" id="nRe-Af-ZOT"/>
                         <outlet property="versionLabel" destination="Qpk-sH-aBT" id="NUN-NE-Aku"/>
