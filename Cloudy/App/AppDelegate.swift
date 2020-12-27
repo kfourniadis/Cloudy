@@ -3,6 +3,7 @@
 import UIKit
 import Firebase
 import AVFoundation
+var window: UIWindow?
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

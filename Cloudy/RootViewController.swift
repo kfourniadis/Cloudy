@@ -18,9 +18,62 @@ protocol MenuActionsHandler {
     func injectCustom(code: String)
 }
 
-/// The main view controller
+//// The main view controller
 /// TODO way too big, refactor asap
 class RootViewController: UIViewController, MenuActionsHandler {
+    var secondWindow : UIWindow?
+    var secondScreenView : UIView?
+    var externalLabel = UILabel()
+    
+    @objc func setupScreen(){
+        // Handle External Monitor if connected to iOS device
+        // different techniques for compensating for pixel loss at the edge of the screen.
+        if UIScreen.screens.count > 1{
+            let secondScreen = UIScreen.screens[1]
+            // shift content to secondScreen exclusively
+            // add code here
+            //secondScreen.overscanCompensation = .scale
+            
+            secondWindow = UIWindow(frame: secondScreen.bounds)
+            // windows require root view controller
+            let viewcontroller = UIViewController()
+            secondWindow?.rootViewController = viewcontroller
+            // tell the window which screen to use
+            secondWindow?.screen = secondScreen
+            // set the dimensions for the view for the external screen so it fills the screen
+            secondScreenView = UIView(frame: secondWindow!.frame)
+            // add the view to the second screens window
+            secondWindow?.addSubview(secondScreenView!)
+            // unhide the window
+            secondWindow?.isHidden = false
+            // customise the view
+            secondScreenView!.backgroundColor = UIColor.red
+            // configure the label
+            externalLabel.textAlignment = NSTextAlignment.center
+            externalLabel.font = UIFont(name: "Helvetica", size: 50.0)
+            externalLabel.frame = secondScreenView!.bounds
+            externalLabel.text = "Hello Second Screen!"
+            // add the label to the view
+            secondScreenView!.addSubview(externalLabel)
+            
+            let alert = UIAlertController(title: "External monitor detected", message: "Set overscan compensation:", preferredStyle: .alert)
+            // https://developer.apple.com/documentation/uikit/uiscreen/overscancompensation
+            // For an external screen, this property sets the desired technique to compensate for overscan.
+            // Some external displays may be unable to reliably display all of the pixels to the user. To compensate, choose one of the techniques described in the UIScreen.OverscanCompensation enumeration.
+            //alert.addAction(UIAlertAction(title: "Scale", style: .default, handler: { action in secondScreen.overscanCompensation = UIScreen.OverscanCompensation(rawValue: 3)! } ))
+            alert.addAction(UIAlertAction(title: "Scale", style: .default, handler: { action in secondScreen.overscanCompensation = .scale } ))
+            alert.addAction(UIAlertAction(title: "None", style: .default, handler: { action in secondScreen.overscanCompensation = .none }))
+            alert.addAction(UIAlertAction(title: "Inset", style: .default, handler: { action in secondScreen.overscanCompensation = .insetBounds }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil ))
+            self.present(alert, animated: true)
+        }
+    }
+    
+    func registerForScreenNotifications(){
+        let notificationsCenter = NotificationCenter.default
+        notificationsCenter.addObserver(self, selector:#selector(RootViewController.setupScreen), name:UIScreen.didConnectNotification, object:nil)
+    }
+    
 
     /// Containers
     @IBOutlet var containerWebView:            UIView!
