@@ -33,7 +33,7 @@ class RootViewController: UIViewController, MenuActionsHandler {
             // shift content to secondScreen exclusively
             // add code here
             //secondScreen.overscanCompensation = .scale
-            /*
+            
             secondWindow = UIWindow(frame: secondScreen.bounds)
             // windows require root view controller
             let viewcontroller = UIViewController()
@@ -56,7 +56,7 @@ class RootViewController: UIViewController, MenuActionsHandler {
             externalLabel.text = "Hello Second Screen!"
             // add the label to the view
             secondScreenView!.addSubview(externalLabel)
-            */
+            
             let alert = UIAlertController(title: "External monitor detected", message: "Set overscan compensation:", preferredStyle: .alert)
             // https://developer.apple.com/documentation/uikit/uiscreen/overscancompensation
             // For an external screen, this property sets the desired technique to compensate for overscan.
